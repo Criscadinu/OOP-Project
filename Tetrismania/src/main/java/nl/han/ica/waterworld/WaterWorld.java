@@ -120,7 +120,7 @@ public class WaterWorld extends GameEngine {
      */
     private void createDashboard(int dashboardWidth,int dashboardHeight) {
         Dashboard dashboard = new Dashboard(0,0, dashboardWidth, dashboardHeight);
-        dashboardText=new TextObject("");
+        dashboardText = new TextObject("");
         dashboard.addGameObject(dashboardText);
         addDashboard(dashboard);
     }
@@ -149,7 +149,7 @@ public class WaterWorld extends GameEngine {
         TileType[] tileTypes = { boardTileType };
         int tileSize=50;
         int tilesMap[][]={
-                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                {0,0,0,0,0,0,0,0,0,0},
                 {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
                 {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
                 {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
@@ -162,7 +162,9 @@ public class WaterWorld extends GameEngine {
                 {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
                 {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
                 {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}
+                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                
+                
         };
         tileMap = new TileMap(tileSize, tileTypes, tilesMap);
     }

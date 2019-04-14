@@ -3,7 +3,7 @@ package nl.han.ica.OOPDProcessingEngineHAN.Tile;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 
 /**
- * The Tile Object is used to bind a Sprite to an location in a TileMap
+ * The Tile Object is used to bind a Sprite to a location in a TileMap
  * Extend Tile to create different types of tiles.
  */
 public class Tile {
