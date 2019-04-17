@@ -1,39 +1,104 @@
 package nl.han.ica.tetrismania;
-import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
-import nl.han.ica.OOPDProcessingEngineHAN.Objects.SpriteObject;
+
+import java.util.List;
+import java.util.Random;
+
+import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithGameObjects;
+import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
+import processing.core.PGraphics;
 
 /**
- * @author Ralph Niels
- * Een zwaardvis is een spelobject dat zelfstandig
- * door de wereld beweegt
+ * dit is een steen
+ * 
+ * @author cc //TODO
  */
-public class Steen extends SpriteObject {
+public class Steen extends GameObject implements ICollidableWithGameObjects {
 
-    private Tetrismania world;
+	private int steenGrootte = 40;
+	private String name;
+	private boolean stop;
+	String[] steenType = { "T", "V", "L", "S" };
 
-    /**
-     * Constructor
-     * @param world Referentie naar de wereld
-     */
-    public Steen(Tetrismania world) {
-        this(new Sprite("src/main/java/nl/han/ica/tetrismania/media/vierkant.png"));
-        this.world=world;
-    }
+	public Steen(int x, int y) {
+		super(x, y, 40, 40);
+		Random randint = new Random();
+		stop = false;
 
-    /**
-     * Maak een Swordfish aan met een sprite
-     * @param sprite De sprite die aan dit object gekoppeld moet worden
-     */
-    private Steen(Sprite sprite) {
-        super(sprite);
-        setySpeed(+1);
-    }
+		int test = randint.nextInt(steenType.length);
+		this.name = steenType[test];
+	}
 
-    @Override
-    public void update() {
-        if (getY()+getWidth()<=0) {
-            setY(world.getWidth());
-        }
+	@Override
+	public void update() {
+		if (!stop) {
+			y += 1;
 
-    }
+ 		}
+		if (y == 750) {
+			stop = true;
+		}
+
+	}
+
+	public void groei() {
+		steenGrootte += 10;
+	}
+
+	public void steenNaarRechts() {
+		x += 10;
+	}
+
+	public void steenNaarLinks() {
+		x -= 10;
+	}
+
+	public void steenNaarBodem() {
+		y = 870;
+		stop = true;
+
+	}
+	
+	public void steenNaarBeneden() {
+		y += 10;
+	}
+
+	@Override
+	public void draw(PGraphics g) {
+		switch (this.name) {
+		case ("V"):
+
+			g.rect(x, y, steenGrootte, steenGrootte);
+			g.rect(x + steenGrootte, y + steenGrootte, steenGrootte, steenGrootte);
+			g.rect(x, y + steenGrootte, steenGrootte, steenGrootte);
+			g.rect(x + steenGrootte, y, steenGrootte, steenGrootte);
+			break;
+		case ("T"):
+
+			g.rect(x, y, steenGrootte, steenGrootte);
+			g.rect(x + steenGrootte, y, steenGrootte, steenGrootte);
+			g.rect(x + steenGrootte * 2, y, steenGrootte, steenGrootte);
+			g.rect(x + steenGrootte, y + steenGrootte, steenGrootte, steenGrootte);
+			break;
+		case ("L"):
+
+			g.rect(x, y, steenGrootte, steenGrootte);
+			g.rect(x + steenGrootte, y, steenGrootte, steenGrootte);
+			g.rect(x + steenGrootte * 2, y, steenGrootte, steenGrootte);
+			g.rect(x + steenGrootte * 2, y + steenGrootte, steenGrootte, steenGrootte);
+			break;
+		case ("S"):
+
+			g.rect(x + steenGrootte, y, steenGrootte, steenGrootte);
+			g.rect(x + steenGrootte, y + steenGrootte, steenGrootte, steenGrootte);
+			g.rect(x, y + steenGrootte, steenGrootte, steenGrootte);
+			g.rect(x + steenGrootte * 2, y, steenGrootte, steenGrootte);
+			break;
+		}
+
+	}
+
+	@Override
+	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
+		System.out.println("BOTSING");
+	}
 }
