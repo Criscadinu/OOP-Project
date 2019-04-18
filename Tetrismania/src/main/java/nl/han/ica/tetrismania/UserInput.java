@@ -8,6 +8,7 @@ public class UserInput extends GameObject {
 	private Steen steen;
 	private Tetrismania tm;
 
+	private Steen vallendeSteen;
 	public UserInput(Steen s, Tetrismania tm) {
 		this.steen = s;
 		this.tm = tm;
@@ -27,6 +28,9 @@ public class UserInput extends GameObject {
 		this.steen = steen;
 	}
 
+	public Steen getCurr() {
+		return steen;
+	}
 	public void keyPressed(int keyCode, char key) {
 		System.out.println(keyCode);
 		if (keyCode == 39) { // +
@@ -37,7 +41,15 @@ public class UserInput extends GameObject {
 			steen.steenNaarBodem();
 		} else if (keyCode == 40) {
 			steen.steenNaarBeneden();
-		}
+		} else if (keyCode == 65) {
+			steen.steenDraaiLinks();
+		} else if (keyCode == 68) {
+			steen.steenDraaiRechts();
+		}	 else if (keyCode == 82) {
+			tm.maakNieuweSteen();
+		}	
+		System.out.println(steen.getPos());
+	}
 
 		System.out.println(keyCode);
 	}
