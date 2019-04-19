@@ -29,13 +29,13 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 	private int pos;
 
 	public Steen(int x, int y, Tetrismania tm) {
-		super(x, y, 140, 140);
+		super(x, y, 40, 40);
 		Random randint = new Random();
 		stop = false;
 		setCurr(true);
 		pos = 0;
 		int randomN = randint.nextInt(steenType.length);
-		String typeS = steenType[randomN];
+		String typeS = steenType[1];
 		name = typeS;
 		switch (typeS) {
 		case ("V"):
@@ -43,10 +43,10 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 			t2 = new SteenTile(40, 80);
 			t3 = new SteenTile(80, 40);
 			t4 = new SteenTile(80, 80);
-			tm.addGameObject(t1);
-			tm.addGameObject(t2);
-			tm.addGameObject(t3);
-			tm.addGameObject(t4);
+			tm.addGameObject(t1, 38,38);
+			tm.addGameObject(t2, 38,76);
+			tm.addGameObject(t3, 76,38);
+			tm.addGameObject(t4, 76,76);
 			break;
 
 		case ("T"):
@@ -89,6 +89,7 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 
 	@Override
 	public void update() {
+		System.out.println(t1.getCenterX());
 		if (!this.stop && this.getCurr()) {
 			y += 1;
 			int t1Y = t1.getyPos();
@@ -246,8 +247,6 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 
 	@Override
 	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
-		System.out.println(collidedGameObjects.size());
-		
 		
 	}
 
