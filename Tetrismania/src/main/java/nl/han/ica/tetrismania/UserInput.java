@@ -48,11 +48,8 @@ public class UserInput extends GameObject {
 		}	 else if (keyCode == 82) {
 			tm.maakNieuweSteen();
 		}	
-		System.out.println(steen.getPos());
 	}
-
-		System.out.println(keyCode);
-	}
+ 
 
 	/**
 	 * This event is fired when the GameEngine received a key release.
@@ -61,7 +58,6 @@ public class UserInput extends GameObject {
 	 * @param key
 	 */
 	public void keyReleased(int keyCode, char key) {
-
 	}
 
 }

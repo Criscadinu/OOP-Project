@@ -1,3 +1,4 @@
+    
 package nl.han.ica.tetrismania;
 
 import java.util.ArrayList;
@@ -32,13 +33,13 @@ public class Tetrismania extends GameEngine {
 
 	public void maakNieuweSteen() {
 		geplaatsteStenen.add(vallendeSteen);
-		vallendeSteen = new Steen(20, 20);
+		vallendeSteen = new Steen(20, 20,this);
 		addGameObject(vallendeSteen, 50, 0);
 		ui.updateSteen(vallendeSteen);
 	}
 	
 	public void voegExtraSteenToe() {
-		Steen nieuweSteen = new Steen(20, 20);
+		Steen nieuweSteen = new Steen(20, 20, this);
 		addGameObject(nieuweSteen, 50, 0);
 	}
 
@@ -59,4 +60,3 @@ public class Tetrismania extends GameEngine {
 		}
 
 	}
-

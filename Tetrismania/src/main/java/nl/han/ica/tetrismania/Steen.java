@@ -17,31 +17,89 @@ import processing.core.PGraphics;
 public class Steen extends GameObject implements ICollidableWithGameObjects {
 
 	private int steenGrootte = 40;
-	public enum Rot { S,R,B,L}; // .ordinal();
 	private String name;
 	private boolean stop;
 	private boolean coll;
 	private boolean curr;
+	private SteenTile t1;
+	private SteenTile t2;
+	private SteenTile t3;
+	private SteenTile t4;
 	String[] steenType = { "T", "V", "L", "S" };
-	private Tetrismania tm; 
 	private int pos;
 
-	public Steen(int x, int y) {
+	public Steen(int x, int y, Tetrismania tm) {
 		super(x, y, 140, 140);
 		Random randint = new Random();
 		stop = false;
-		coll = false;
 		setCurr(true);
-
-		int pos = 0;
+		pos = 0;
 		int randomN = randint.nextInt(steenType.length);
-		this.name = steenType[randomN];
+		String typeS = steenType[randomN];
+		name = typeS;
+		switch (typeS) {
+		case ("V"):
+			t1 = new SteenTile(40, 40);
+			t2 = new SteenTile(40, 80);
+			t3 = new SteenTile(80, 40);
+			t4 = new SteenTile(80, 80);
+			tm.addGameObject(t1);
+			tm.addGameObject(t2);
+			tm.addGameObject(t3);
+			tm.addGameObject(t4);
+			break;
+
+		case ("T"):
+			t1 = new SteenTile(40, 40);
+			t2 = new SteenTile(40, 80);
+			t3 = new SteenTile(40, 120);
+			t4 = new SteenTile(80, 80);
+			tm.addGameObject(t1);
+			tm.addGameObject(t2);
+			tm.addGameObject(t3);
+			tm.addGameObject(t4);
+
+			break;
+
+		case ("L"):
+			t1 = new SteenTile(40, 40);
+			t2 = new SteenTile(40, 80);
+			t3 = new SteenTile(40, 120);
+			t4 = new SteenTile(80, 120);
+			tm.addGameObject(t1);
+			tm.addGameObject(t2);
+			tm.addGameObject(t3);
+			tm.addGameObject(t4);
+
+			break;
+
+		case ("S"):
+			t1 = new SteenTile(40, 40);
+			t2 = new SteenTile(40, 80);
+			t3 = new SteenTile(80, 80);
+			t4 = new SteenTile(80, 120);
+			tm.addGameObject(t1);
+			tm.addGameObject(t2);
+			tm.addGameObject(t3);
+			tm.addGameObject(t4);
+
+			break;
+		}
 	}
 
 	@Override
 	public void update() {
-		if (!this.stop && !this.coll && this.getCurr()) {
+		if (!this.stop && this.getCurr()) {
 			y += 1;
+			int t1Y = t1.getyPos();
+			int t2Y = t2.getyPos();
+			int t3Y = t3.getyPos();
+			int t4Y = t4.getyPos();
+			t1.setyPos(t1Y + 1);
+			t2.setyPos(t2Y + 1);
+			t3.setyPos(t3Y + 1);
+			t4.setyPos(t4Y + 1);
+
 
  		} 
 
@@ -49,19 +107,30 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 			this.stop = true;
 			this.setCurr(false);
 		}
-
-	}
-
-	public void groei() {
-		this.steenGrootte += 10;
 	}
 
 	public void steenNaarRechts() {
-		this.x += 10;
+		x += 40;
+		int t1X = t1.getxPos();
+		int t2X = t2.getxPos();
+		int t3X = t3.getxPos();
+		int t4X = t4.getxPos();
+		t1.setxPos(t1X + 40);
+		t2.setxPos(t2X + 40);
+		t3.setxPos(t3X + 40);
+		t4.setxPos(t4X + 40);
 	}
 
 	public void steenNaarLinks() {
-		this.x -= 10;
+		x -= 40;
+		int t1X = t1.getxPos();
+		int t2X = t2.getxPos();
+		int t3X = t3.getxPos();
+		int t4X = t4.getxPos();
+		t1.setxPos(t1X - 40);
+		t2.setxPos(t2X - 40);
+		t3.setxPos(t3X - 40);
+		t4.setxPos(t4X - 40);
 	}
 
 	public void steenDraaiRechts() {
@@ -69,6 +138,83 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 			this.setPos(0);
 		} else {
 			this.setPos(this.getPos() + 1);
+		}
+		switch (this.name) {
+		case ("V"):
+
+			break;
+
+		case ("T"):
+
+			int[][] VxPlace = {
+					{(int) x+40, (int) x+80, (int) x+120, (int) x+80},
+					{(int) x+40,(int) x+40,(int) x+80,(int) x+40},
+					{(int) x+80,(int) x+40,(int) x+80,(int) x+120},
+					{(int) x+80,(int) x+40,(int) x+80,(int) x+80}
+			};
+			int[][] VyPlace = {
+					{(int) y, (int) y, (int) y,(int) y+40},
+					{(int) y, (int) y+40, (int) y+40,(int) y+80},
+					{(int) y, (int) y+40, (int) y+40,(int) y+40},
+					{(int) y, (int) y+40, (int) y+40,(int) y+80}
+			};
+			this.t1.setxPos(VxPlace[this.pos][0]);
+			this.t1.setyPos(VyPlace[this.pos][0]);
+			this.t2.setxPos(VxPlace[this.pos][1]);
+			this.t2.setyPos(VyPlace[this.pos][1]);
+			this.t3.setxPos(VxPlace[this.pos][2]);
+			this.t3.setyPos(VyPlace[this.pos][2]);
+			this.t4.setxPos(VxPlace[this.pos][3]);
+			this.t4.setyPos(VyPlace[this.pos][3]);
+			System.out.println(y);
+			break;
+
+		case ("L"):
+			int[][] LxPlace = {
+					{(int) x+40, (int) x+40, (int) x+40, (int) x+80},
+					{(int) x+40,(int) x+80,(int) x+120,(int) x+40},
+					{(int) x+40,(int) x+80,(int) x+80,(int) x+80},
+					{(int) x+120,(int) x+40,(int) x+80,(int) x+120}
+			};
+			int[][] LyPlace = {
+					{(int) y, (int) y+40, (int) y+80,(int) y+80},
+					{(int) y, (int) y, (int) y,(int) y+40},
+					{(int) y, (int) y, (int) y+40,(int) y+80},
+					{(int) y, (int) y+40, (int) y+40,(int) y+40}
+			};
+			this.t1.setxPos(LxPlace[this.pos][0]);
+			this.t1.setyPos(LyPlace[this.pos][0]);
+			this.t2.setxPos(LxPlace[this.pos][1]);
+			this.t2.setyPos(LyPlace[this.pos][1]);
+			this.t3.setxPos(LxPlace[this.pos][2]);
+			this.t3.setyPos(LyPlace[this.pos][2]);
+			this.t4.setxPos(LxPlace[this.pos][3]);
+			this.t4.setyPos(LyPlace[this.pos][3]);
+			break;
+
+		case ("S"):
+
+			int[][] SxPlace = {
+					{(int) x+40, (int) x+40, (int) x+80, (int) x+80},
+					{(int) x+80,(int) x+120,(int) x+40,(int) x+80},
+					{(int) x+40, (int) x+40, (int) x+80, (int) x+80},
+					{(int) x+80,(int) x+120,(int) x+40,(int) x+80},
+			};
+			int[][] SyPlace = {
+					{(int) y, (int) y+40, (int) y+40,(int) y+80},
+					{(int) y, (int) y, (int) y+40,(int) y+40},
+					{(int) y, (int) y+40, (int) y+40,(int) y+80},
+					{(int) y, (int) y, (int) y+40,(int) y+40},
+			};
+			this.t1.setxPos(SxPlace[this.pos][0]);
+			this.t1.setyPos(SyPlace[this.pos][0]);
+			this.t2.setxPos(SxPlace[this.pos][1]);
+			this.t2.setyPos(SyPlace[this.pos][1]);
+			this.t3.setxPos(SxPlace[this.pos][2]);
+			this.t3.setyPos(SyPlace[this.pos][2]);
+			this.t4.setxPos(SxPlace[this.pos][3]);
+			this.t4.setyPos(SyPlace[this.pos][3]);
+			break;
 		}
 	}
 
@@ -86,91 +232,23 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 		this.setCurr(false);
 
 	}
-	
+
 	public void steenNaarBeneden() {
 		y += 10;
 	}
 
-
 	@Override
 	public void draw(PGraphics g) {
-		g.noStroke();
-		switch (this.name) {
-		case ("V"):
 
-			g.rect(x, y, steenGrootte, steenGrootte);
-			g.rect(x + steenGrootte, y + steenGrootte, steenGrootte, steenGrootte);
-			g.rect(x, y + steenGrootte, steenGrootte, steenGrootte);
-			g.rect(x + steenGrootte, y, steenGrootte, steenGrootte);
-			break;
-			
-		case ("T"):
-			
-			int[][] VxPlace = {
-					{(int) x+40, (int) x+80, (int) x+120, (int) x+80},
-					{(int) x+40,(int) x+40,(int) x+80,(int) x+40},
-					{(int) x+80,(int) x+40,(int) x+80,(int) x+120},
-					{(int) x+80,(int) x+40,(int) x+80,(int) x+80}
-			};
-			int[][] VyPlace = {
-					{(int) y, (int) y, (int) y,(int) (y+40)},
-					{(int) y, (int) y+40, (int) y+40,(int) (y+80)},
-					{(int) y, (int) y+40, (int) y+40,(int) (y+40)},
-					{(int) y, (int) y+40, (int) y+40,(int) (y+80)}
-			};
-			g.rect(VxPlace[this.getPos()][0], VyPlace[this.getPos()][0], steenGrootte, steenGrootte);
-			g.rect(VxPlace[this.getPos()][1], VyPlace[this.getPos()][1], steenGrootte, steenGrootte);
-			g.rect(VxPlace[this.getPos()][2], VyPlace[this.getPos()][2], steenGrootte, steenGrootte);
-			g.rect(VxPlace[this.getPos()][3], VyPlace[this.getPos()][3], steenGrootte, steenGrootte);
-			break;
-			
-		case ("L"):
-			
-			int[][] LxPlace = {
-					{(int) x+40, (int) x+40, (int) x+40, (int) x+80},
-					{(int) x+40,(int) x+80,(int) x+120,(int) x+40},
-					{(int) x+40,(int) x+80,(int) x+80,(int) x+80},
-					{(int) x+120,(int) x+40,(int) x+80,(int) x+120}
-			};
-			int[][] LyPlace = {
-					{(int) y, (int) y+40, (int) y+80,(int) (y+80)},
-					{(int) y, (int) y, (int) y,(int) (y+40)},
-					{(int) y, (int) y, (int) y+40,(int) (y+80)},
-					{(int) y, (int) y+40, (int) y+40,(int) (y+40)}
-			};
-			g.rect(LxPlace[this.getPos()][0], LyPlace[this.getPos()][0], steenGrootte, steenGrootte);
-			g.rect(LxPlace[this.getPos()][1], LyPlace[this.getPos()][1], steenGrootte, steenGrootte);
-			g.rect(LxPlace[this.getPos()][2], LyPlace[this.getPos()][2], steenGrootte, steenGrootte);
-			g.rect(LxPlace[this.getPos()][3], LyPlace[this.getPos()][3], steenGrootte, steenGrootte);
-			break;
-			
-		case ("S"):
-			
-			int[][] SxPlace = {
-					{(int) x+40,(int) x+40,(int) x+80,(int) x+80},
-					{(int) x+80,(int) x+120,(int) x+40,(int) x+80},
-					{(int) x+40,(int) x+40,(int) x+80,(int) x+80},
-					{(int) x+80,(int) x+120,(int) x+40,(int) x+80},
-			};
-			int[][] SyPlace = {
-					{(int) y, (int) y+40, (int) y+40,(int) (y+80)},
-					{(int) y, (int) y, (int) y+40,(int) (y+40)},
-					{(int) y, (int) y+40, (int) y+40,(int) (y+80)},
-					{(int) y, (int) y, (int) y+40,(int) (y+40)},
-			};
 
-			g.rect(SxPlace[this.getPos()][0], SyPlace[this.getPos()][0], steenGrootte, steenGrootte);
-			g.rect(SxPlace[this.getPos()][1], SyPlace[this.getPos()][1], steenGrootte, steenGrootte);
-			g.rect(SxPlace[this.getPos()][2], SyPlace[this.getPos()][2], steenGrootte, steenGrootte);
-			g.rect(SxPlace[this.getPos()][3], SyPlace[this.getPos()][3], steenGrootte, steenGrootte);
-			break;
-		}
 
 	}
 
 	@Override
 	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
-		stop = true;
+		System.out.println(collidedGameObjects.size());
+		
+		
 	}
 
 	public boolean getCurr() {
