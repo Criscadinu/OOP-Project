@@ -16,22 +16,25 @@ import processing.core.PGraphics;
  */
 public class SteenTile extends GameObject implements ICollidableWithGameObjects {
 
-	private int xPos;
-	private int yPos;
+	protected boolean move;
 	public SteenTile(int x, int y) {
-		this.setxPos(x);
-		this.setyPos(y);
+		super(x, y, 38, 38);
+		move = true;
+		this.setX(x);
+		this.setY(y);
 	}
 
 	@Override
 	public void update() {		
-		
+		if (move) {
+			this.setY(this.getY() + 1);
+		}
 	}
 
 	@Override
 	public void draw(PGraphics g) {
 		g.fill(255,0,0);
-		g.rect(getxPos(), getyPos(), 40, 40);	
+		g.rect(getX(), getY(), 40, 40);	
 	}
 
 	@Override
@@ -40,18 +43,4 @@ public class SteenTile extends GameObject implements ICollidableWithGameObjects 
 		
 	}
 
-	public int getxPos() {
-		return xPos;
-	}
-
-	public void setxPos(int xPos) {
-		this.xPos = xPos;
-	}
-	public int getyPos() {
-		return yPos;
-	}
-
-	public void setyPos(int yPos) {
-		this.yPos = yPos;
-	}
 }
