@@ -85,6 +85,7 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 
 	@Override
 	public void update() {
+<<<<<<< HEAD
 //		if (!this.stop && this.getCurr()) {
 //			t1.setY(t1.getY() +1);
 //			t2.setY(t2.getY() +1);
@@ -98,6 +99,21 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 //			this.stop = true;
 //			this.setCurr(false);
 //		}
+=======
+		if (!this.stop && this.getCurr()) {
+			t1.setY(t1.getY() +1);
+			t2.setY(t2.getY() +1);
+			t3.setY(t3.getY() +1);
+			t4.setY(t4.getY() +1);
+
+
+ 		} 
+
+		if (y >= 470) {
+			this.stop = true;
+			this.setCurr(false);
+		}
+>>>>>>> a9c145d4c3e68533d5b0f2f4f309ab02e8f7d087
 	}
 
 	public void steenNaarRechts() {
