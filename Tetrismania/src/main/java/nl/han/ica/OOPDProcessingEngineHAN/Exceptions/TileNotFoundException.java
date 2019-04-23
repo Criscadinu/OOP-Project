@@ -5,7 +5,7 @@ package nl.han.ica.OOPDProcessingEngineHAN.Exceptions;
  */
 public class TileNotFoundException extends RuntimeException {
 
-    public TileNotFoundException(String message) {
-        super(message);
-    }
+	public TileNotFoundException(String message) {
+		super(message);
+	}
 }

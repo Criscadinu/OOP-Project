@@ -37,22 +37,25 @@ public class CollidedTile {
 	public Tile theTile;
 
 	/**
-	 * The side of the tile onto which the Object has collided. See constants
-	 * for values.
+	 * The side of the tile onto which the Object has collided. See constants for
+	 * values.
 	 */
 	public int collisionSide;
 
 	/**
 	 * Create a simple TileCollision object.
 	 *
-	 * @param t
-	 *            The tile
-	 * @param cs
-	 *            The collisionSide
+	 * @param t  The tile
+	 * @param cs The collisionSide
 	 */
 	public CollidedTile(Tile t, int cs) {
-		
+
 		theTile = t;
 		collisionSide = cs;
+	}
+
+	public Tile getTile() {
+		// TODO Auto-generated method stub
+		return theTile;
 	}
 }

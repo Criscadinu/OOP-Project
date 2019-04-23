@@ -1,4 +1,3 @@
-    
 package nl.han.ica.tetrismania;
 
 import java.util.ArrayList;
@@ -26,6 +25,7 @@ public class Tetrismania extends GameEngine {
 		int worldHeight = HOOGTE; 	
 
 		createViewWithoutViewport(worldWidth, worldHeight);
+		maakBodemFrame();
 		ui = new UserInput(vallendeSteen, this);
 		addGameObject(ui);
 		maakNieuweSteen();
@@ -33,9 +33,14 @@ public class Tetrismania extends GameEngine {
 
 	public void maakNieuweSteen() {
 		geplaatsteStenen.add(vallendeSteen);
-		vallendeSteen = new Steen(0, 0,this);
+		vallendeSteen = new Steen(-1, -1,this);
 		addGameObject(vallendeSteen);
 		ui.updateSteen(vallendeSteen);
+	}
+	
+	public void maakBodemFrame() {
+		Frame bodem = new Frame(0, HOOGTE, BREEDTE, 10);
+		addGameObject(bodem);
 	}
 	
 	public void voegExtraSteenToe() {

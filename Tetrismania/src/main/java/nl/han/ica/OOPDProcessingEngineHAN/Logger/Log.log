@@ -270,3 +270,77 @@ FAILURE: test
 FAILURE: test
 [2015-51-08 10:51:39.436] 
 FAILURE: test
+[2019-44-21 09:44:49.456] 
+FAILURE: java.lang.NullPointerException
+[2019-44-21 09:44:49.457] 
+FAILURE: java.lang.NullPointerException
+[2019-44-21 09:44:49.457] 
+FAILURE: java.lang.NullPointerException
+[2019-44-21 09:44:49.457] 
+FAILURE: java.lang.NullPointerException
+[2019-44-21 09:44:49.457] 
+FAILURE: java.lang.NullPointerException
+[2019-44-21 09:44:49.457] 
+FAILURE: java.lang.NullPointerException
+[2019-44-21 09:44:49.457] 
+FAILURE: java.lang.NullPointerException
+[2019-45-21 09:45:12.16] 
+FAILURE: java.lang.NullPointerException
+[2019-45-21 09:45:12.17] 
+FAILURE: java.lang.NullPointerException
+[2019-45-21 09:45:12.17] 
+FAILURE: java.lang.NullPointerException
+[2019-45-21 09:45:12.17] 
+FAILURE: java.lang.NullPointerException
+[2019-45-21 09:45:12.17] 
+FAILURE: java.lang.NullPointerException
+[2019-45-21 09:45:12.17] 
+FAILURE: java.lang.NullPointerException
+[2019-45-21 09:45:12.17] 
+FAILURE: java.lang.NullPointerException
+[2019-45-21 09:45:21.320] 
+FAILURE: java.lang.NullPointerException
+[2019-45-21 09:45:21.321] 
+FAILURE: java.lang.NullPointerException
+[2019-45-21 09:45:21.321] 
+FAILURE: java.lang.NullPointerException
+[2019-45-21 09:45:21.321] 
+FAILURE: java.lang.NullPointerException
+[2019-45-21 09:45:21.321] 
+FAILURE: java.lang.NullPointerException
+[2019-45-21 09:45:21.321] 
+FAILURE: java.lang.NullPointerException
+[2019-45-21 09:45:21.322] 
+FAILURE: java.lang.NullPointerException
+[2019-45-21 09:45:38.744] 
+FAILURE: java.lang.NullPointerException
+[2019-45-21 09:45:38.744] 
+FAILURE: java.lang.NullPointerException
+[2019-45-21 09:45:38.744] 
+FAILURE: java.lang.NullPointerException
+[2019-45-21 09:45:38.745] 
+FAILURE: java.lang.NullPointerException
+[2019-45-21 09:45:38.745] 
+FAILURE: java.lang.NullPointerException
+[2019-45-21 09:45:38.745] 
+FAILURE: java.lang.NullPointerException
+[2019-45-21 09:45:38.745] 
+FAILURE: java.lang.NullPointerException
+[2019-07-21 10:07:41.268] 
+FAILURE: java.lang.IllegalArgumentException: width or height must be > 0 for resize
+[2019-07-21 10:07:41.268] 
+FAILURE: java.lang.IllegalArgumentException: width or height must be > 0 for resize
+[2019-07-21 10:07:41.269] 
+FAILURE: java.lang.IllegalArgumentException: width or height must be > 0 for resize
+[2019-07-21 10:07:41.269] 
+FAILURE: java.lang.IllegalArgumentException: width or height must be > 0 for resize
+[2019-07-21 10:07:41.269] 
+FAILURE: java.lang.IllegalArgumentException: width or height must be > 0 for resize
+[2019-07-21 10:07:41.269] 
+FAILURE: java.lang.IllegalArgumentException: width or height must be > 0 for resize
+[2019-07-21 10:07:41.269] 
+FAILURE: java.lang.IllegalArgumentException: width or height must be > 0 for resize
+[2019-07-21 10:07:41.269] 
+FAILURE: java.lang.IllegalArgumentException: width or height must be > 0 for resize
+[2019-07-21 10:07:41.269] 
+FAILURE: java.lang.IllegalArgumentException: width or height must be > 0 for resize

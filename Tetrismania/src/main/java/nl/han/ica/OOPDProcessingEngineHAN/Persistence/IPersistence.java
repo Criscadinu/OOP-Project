@@ -5,11 +5,13 @@ package nl.han.ica.OOPDProcessingEngineHAN.Persistence;
  */
 public interface IPersistence {
 
-    void saveData(String data);
-    void saveData(String[] data, String separator);
+	void saveData(String data);
 
-    String loadDataString();
-    String[] loadDataStringArray(String separator);
+	void saveData(String[] data, String separator);
 
-    boolean fileExists();
+	String loadDataString();
+
+	String[] loadDataStringArray(String separator);
+
+	boolean fileExists();
 }

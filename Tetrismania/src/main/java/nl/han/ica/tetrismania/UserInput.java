@@ -8,7 +8,6 @@ public class UserInput extends GameObject {
 	private Steen steen;
 	private Tetrismania tm;
 
-	private Steen vallendeSteen;
 	public UserInput(Steen s, Tetrismania tm) {
 		this.steen = s;
 		this.tm = tm;
@@ -28,9 +27,6 @@ public class UserInput extends GameObject {
 		this.steen = steen;
 	}
 
-	public Steen getCurr() {
-		return steen;
-	}
 	public void keyPressed(int keyCode, char key) {
 		System.out.println(keyCode);
 		if (keyCode == 39) { // +
@@ -42,14 +38,13 @@ public class UserInput extends GameObject {
 		} else if (keyCode == 40) {
 			steen.steenNaarBeneden();
 		} else if (keyCode == 65) {
-			steen.steenDraaiLinks();
+			steen.steenNaarLinks();
 		} else if (keyCode == 68) {
 			steen.steenDraaiRechts();
-		}	 else if (keyCode == 82) {
+		} else if (keyCode == 82) { // r
 			tm.maakNieuweSteen();
-		}	
+		}
 	}
- 
 
 	/**
 	 * This event is fired when the GameEngine received a key release.

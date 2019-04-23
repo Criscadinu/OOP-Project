@@ -21,8 +21,7 @@ public class Alarm {
 	/**
 	 * Create a new Alarm object.
 	 * 
-	 * @param seconds
-	 *            , after how many seconds you want the alarm to alert.
+	 * @param seconds , after how many seconds you want the alarm to alert.
 	 */
 	public Alarm(String name, double seconds) {
 
@@ -63,8 +62,8 @@ public class Alarm {
 	}
 
 	/**
-	 * Add a new object that implements the IAlarmListener interface to listen
-	 * to the alarm.
+	 * Add a new object that implements the IAlarmListener interface to listen to
+	 * the alarm.
 	 * 
 	 * @param alarm
 	 */
@@ -73,8 +72,8 @@ public class Alarm {
 	}
 
 	/**
-	 * Remove a object that implements the IAlarmListener interface from the
-	 * alarm to stop listening.
+	 * Remove a object that implements the IAlarmListener interface from the alarm
+	 * to stop listening.
 	 * 
 	 * @param alarm
 	 */

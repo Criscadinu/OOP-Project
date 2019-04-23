@@ -5,8 +5,6 @@ import java.util.Random;
 
 import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithGameObjects;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
-import nl.han.ica.tetrismania.Tetrismania;
-import processing.core.PApplet;
 import processing.core.PGraphics;
 
 /**
@@ -16,10 +14,8 @@ import processing.core.PGraphics;
  */
 public class Steen extends GameObject implements ICollidableWithGameObjects {
 
-	private int steenGrootte = 40;
 	private String name;
 	private boolean stop;
-	private boolean coll;
 	private boolean curr;
 	private SteenTile t1;
 	private SteenTile t2;
@@ -35,7 +31,7 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 		setCurr(true);
 		pos = 0;
 		int randomN = randint.nextInt(steenType.length);
-		String typeS = steenType[1];
+		String typeS = steenType[2];
 		name = typeS;
 		switch (typeS) {
 		case ("V"):
@@ -89,57 +85,37 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 
 	@Override
 	public void update() {
-		System.out.println(t1.getCenterX());
-		if (!this.stop && this.getCurr()) {
-			y += 1;
-			int t1Y = t1.getyPos();
-			int t2Y = t2.getyPos();
-			int t3Y = t3.getyPos();
-			int t4Y = t4.getyPos();
-			t1.setyPos(t1Y + 1);
-			t2.setyPos(t2Y + 1);
-			t3.setyPos(t3Y + 1);
-			t4.setyPos(t4Y + 1);
-
-
- 		} 
-
-		if (y >= 470) {
-			this.stop = true;
-			this.setCurr(false);
-		}
+//		if (!this.stop && this.getCurr()) {
+//			t1.setY(t1.getY() +1);
+//			t2.setY(t2.getY() +1);
+//			t3.setY(t3.getY() +1);
+//			t4.setY(t4.getY() +1);
+//
+//
+// 		} 
+//
+//		if (y >= 470) {
+//			this.stop = true;
+//			this.setCurr(false);
+//		}
 	}
 
 	public void steenNaarRechts() {
-		x += 40;
-		int t1X = t1.getxPos();
-		int t2X = t2.getxPos();
-		int t3X = t3.getxPos();
-		int t4X = t4.getxPos();
-		t1.setxPos(t1X + 40);
-		t2.setxPos(t2X + 40);
-		t3.setxPos(t3X + 40);
-		t4.setxPos(t4X + 40);
+		t1.setX(t1.getX() +40);
+		t2.setX(t2.getX() +40);
+		t3.setX(t3.getX() +40);
+		t4.setX(t4.getX() +40);
 	}
 
 	public void steenNaarLinks() {
-		x -= 40;
-		int t1X = t1.getxPos();
-		int t2X = t2.getxPos();
-		int t3X = t3.getxPos();
-		int t4X = t4.getxPos();
-		t1.setxPos(t1X - 40);
-		t2.setxPos(t2X - 40);
-		t3.setxPos(t3X - 40);
-		t4.setxPos(t4X - 40);
+		t1.setX(t1.getX() -40);
+		t2.setX(t2.getX() -40);
+		t3.setX(t3.getX() -40);
+		t4.setX(t4.getX() -40);
 	}
 
 	public void steenDraaiRechts() {
-		if (this.getPos() == 3) {
-			this.setPos(0);
-		} else {
-			this.setPos(this.getPos() + 1);
-		}
+		
 		switch (this.name) {
 		case ("V"):
 
@@ -159,14 +135,14 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 					{(int) y, (int) y+40, (int) y+40,(int) y+40},
 					{(int) y, (int) y+40, (int) y+40,(int) y+80}
 			};
-			this.t1.setxPos(VxPlace[this.pos][0]);
-			this.t1.setyPos(VyPlace[this.pos][0]);
-			this.t2.setxPos(VxPlace[this.pos][1]);
-			this.t2.setyPos(VyPlace[this.pos][1]);
-			this.t3.setxPos(VxPlace[this.pos][2]);
-			this.t3.setyPos(VyPlace[this.pos][2]);
-			this.t4.setxPos(VxPlace[this.pos][3]);
-			this.t4.setyPos(VyPlace[this.pos][3]);
+			this.t1.setX(VxPlace[this.pos][0]);
+			this.t1.setY(VyPlace[this.pos][0]);
+			this.t2.setX(VxPlace[this.pos][1]);
+			this.t2.setY(VyPlace[this.pos][1]);
+			this.t3.setX(VxPlace[this.pos][2]);
+			this.t3.setY(VyPlace[this.pos][2]);
+			this.t4.setX(VxPlace[this.pos][3]);
+			this.t4.setY(VyPlace[this.pos][3]);
 			System.out.println(y);
 			break;
 
@@ -183,14 +159,14 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 					{(int) y, (int) y, (int) y+40,(int) y+80},
 					{(int) y, (int) y+40, (int) y+40,(int) y+40}
 			};
-			this.t1.setxPos(LxPlace[this.pos][0]);
-			this.t1.setyPos(LyPlace[this.pos][0]);
-			this.t2.setxPos(LxPlace[this.pos][1]);
-			this.t2.setyPos(LyPlace[this.pos][1]);
-			this.t3.setxPos(LxPlace[this.pos][2]);
-			this.t3.setyPos(LyPlace[this.pos][2]);
-			this.t4.setxPos(LxPlace[this.pos][3]);
-			this.t4.setyPos(LyPlace[this.pos][3]);
+			this.t1.setX(LxPlace[this.pos][0]);
+			this.t1.setY(LyPlace[this.pos][0]);
+			this.t2.setX(LxPlace[this.pos][1]);
+			this.t2.setY(LyPlace[this.pos][1]);
+			this.t3.setX(LxPlace[this.pos][2]);
+			this.t3.setY(LyPlace[this.pos][2]);
+			this.t4.setX(LxPlace[this.pos][3]);
+			this.t4.setY(LyPlace[this.pos][3]);
 			break;
 
 		case ("S"):
@@ -207,25 +183,18 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 					{(int) y, (int) y+40, (int) y+40,(int) y+80},
 					{(int) y, (int) y, (int) y+40,(int) y+40},
 			};
-			this.t1.setxPos(SxPlace[this.pos][0]);
-			this.t1.setyPos(SyPlace[this.pos][0]);
-			this.t2.setxPos(SxPlace[this.pos][1]);
-			this.t2.setyPos(SyPlace[this.pos][1]);
-			this.t3.setxPos(SxPlace[this.pos][2]);
-			this.t3.setyPos(SyPlace[this.pos][2]);
-			this.t4.setxPos(SxPlace[this.pos][3]);
-			this.t4.setyPos(SyPlace[this.pos][3]);
+			this.t1.setX(SxPlace[this.pos][0]);
+			this.t1.setY(SyPlace[this.pos][0]);
+			this.t2.setX(SxPlace[this.pos][1]);
+			this.t2.setY(SyPlace[this.pos][1]);
+			this.t3.setX(SxPlace[this.pos][2]);
+			this.t3.setY(SyPlace[this.pos][2]);
+			this.t4.setX(SxPlace[this.pos][3]);
+			this.t4.setY(SyPlace[this.pos][3]);
 			break;
 		}
 	}
 
-	public void steenDraaiLinks() {
-		if (this.getPos() == 0) {
-			this.setPos(3);
-		} else {
-			this.setPos(this.getPos() - 1);
-		}
-	}
 
 	public void steenNaarBodem() {
 		this.y = 470;
@@ -247,6 +216,7 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 
 	@Override
 	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
+		System.out.println("Collasdasd");
 		
 	}
 
@@ -256,13 +226,5 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 
 	public void setCurr(boolean curr) {
 		this.curr = curr;
-	}
-
-	public int getPos() {
-		return pos;
-	}
-
-	public void setPos(int pos) {
-		this.pos = pos;
 	}
 }
