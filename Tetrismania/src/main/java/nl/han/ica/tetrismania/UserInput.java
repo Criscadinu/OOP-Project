@@ -28,22 +28,25 @@ public class UserInput extends GameObject {
 	}
 
 	public void keyPressed(int keyCode, char key) {
-		System.out.println(keyCode);
-		if (keyCode == 39) { // +
-			steen.steenNaarRechts();
-		} else if (keyCode == 37) {
-			steen.steenNaarLinks();
-		} else if (keyCode == 32) {
-			steen.steenNaarBodem();
-		} else if (keyCode == 40) {
-			steen.steenNaarBeneden();
-		} else if (keyCode == 65) {
-			steen.steenNaarLinks();
-		} else if (keyCode == 68) {
-			steen.steenDraaiRechts();
-		} else if (keyCode == 82) { // r
-			tm.maakNieuweSteen();
+//		System.out.println(keyCode);
+		if(steen.gestopt != true) {
+			if (keyCode == 39) { // +
+				steen.naarRechts();
+			} else if (keyCode == 37) {
+				steen.naarLinks();
+			} else if (keyCode == 32) {
+				steen.valNaarBodem();
+			} else if (keyCode == 40) {
+				steen.naarBeneden();
+			} else if (keyCode == 65) {
+				steen.draaiLinksom();
+			} else if (keyCode == 68) {
+				steen.draaiRechtsom();
+			} else if (keyCode == 82) { // r
+				tm.maakNieuweSteen();
+			}	
 		}
+		
 	}
 
 	/**
