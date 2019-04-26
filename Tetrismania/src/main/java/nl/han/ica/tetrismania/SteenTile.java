@@ -11,18 +11,19 @@ import processing.core.PGraphics;
  * 
  * @author cc //TODO
  */
-public class SteenTile extends GameObject implements ICollidableWithGameObjects {
+public class SteenTile extends Steen implements ICollidableWithGameObjects {
 
-	protected boolean move;
+	public boolean move;
+
 	public SteenTile(int x, int y) {
-		super(x, y, 38, 38);
+		super(x, y);
 		move = true;
 		this.setX(x);
 		this.setY(y);
 	}
 
 	@Override
-	public void update() {		
+	public void update() {
 		if (move) {
 			this.setY(this.getY() + 1);
 		}
@@ -30,14 +31,15 @@ public class SteenTile extends GameObject implements ICollidableWithGameObjects 
 
 	@Override
 	public void draw(PGraphics g) {
-		g.fill(255,0,0);
-		g.rect(getX(), getY(), 40, 40);	
+		g.fill(255, 0, 0);
+		g.rect(getX(), getY(), 40, 40);
 	}
 
 	@Override
 	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
 		move = false;
-		
+		super.steenStopt();
+
 	}
 
 }

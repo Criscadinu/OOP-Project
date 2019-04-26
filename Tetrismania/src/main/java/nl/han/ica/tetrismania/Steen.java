@@ -13,7 +13,8 @@ import processing.core.PGraphics;
  * @author cc //TODO
  */
 public class Steen extends GameObject implements ICollidableWithGameObjects {
-
+	
+	protected SteenTile[] tiles = new SteenTile[4];
 	private String name;
 	private boolean stop;
 	private boolean curr;
@@ -21,17 +22,18 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 	private SteenTile t2;
 	private SteenTile t3;
 	private SteenTile t4;
+	Tetrismania tm;
 	String[] steenType = { "T", "V", "L", "S" };
 	private int pos;
 
-	public Steen(int x, int y, Tetrismania tm) {
+	public Steen(int x, int y) {
 		super(x, y, 40, 40);
 		Random randint = new Random();
 		stop = false;
 		setCurr(true);
 		pos = 0;
 		int randomN = randint.nextInt(steenType.length);
-		String typeS = steenType[2];
+		String typeS = steenType[1];
 		name = typeS;
 		switch (typeS) {
 		case ("V"):
@@ -62,6 +64,10 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 			t2 = new SteenTile(40, 80);
 			t3 = new SteenTile(40, 120);
 			t4 = new SteenTile(80, 120);
+			tiles[0] = t1;
+			tiles[1] = t2;
+			tiles[2] = t3;
+			tiles[3] = t4;
 			tm.addGameObject(t1);
 			tm.addGameObject(t2);
 			tm.addGameObject(t3);
@@ -83,37 +89,14 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 		}
 	}
 
+
+
 	@Override
 	public void update() {
-<<<<<<< HEAD
-//		if (!this.stop && this.getCurr()) {
-//			t1.setY(t1.getY() +1);
-//			t2.setY(t2.getY() +1);
-//			t3.setY(t3.getY() +1);
-//			t4.setY(t4.getY() +1);
-//
-//
-// 		} 
-//
-//		if (y >= 470) {
-//			this.stop = true;
-//			this.setCurr(false);
-//		}
-=======
-		if (!this.stop && this.getCurr()) {
-			t1.setY(t1.getY() +1);
-			t2.setY(t2.getY() +1);
-			t3.setY(t3.getY() +1);
-			t4.setY(t4.getY() +1);
+		
 
 
- 		} 
 
-		if (y >= 470) {
-			this.stop = true;
-			this.setCurr(false);
-		}
->>>>>>> a9c145d4c3e68533d5b0f2f4f309ab02e8f7d087
 	}
 
 	public void steenNaarRechts() {
@@ -128,6 +111,14 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 		t2.setX(t2.getX() -40);
 		t3.setX(t3.getX() -40);
 		t4.setX(t4.getX() -40);
+	}
+	
+	public void steenStopt() {
+		t1.move = false;
+		t2.move = false;
+		t3.move = false;
+		t4.move = false;
+		
 	}
 
 	public void steenDraaiRechts() {
@@ -231,10 +222,9 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 	}
 
 	@Override
-	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
-		System.out.println("Collasdasd");
-		
-	}
+	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {}
+	
+	
 
 	public boolean getCurr() {
 		return curr;

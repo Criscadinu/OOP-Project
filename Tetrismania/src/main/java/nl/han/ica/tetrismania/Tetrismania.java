@@ -33,7 +33,7 @@ public class Tetrismania extends GameEngine {
 
 	public void maakNieuweSteen() {
 		geplaatsteStenen.add(vallendeSteen);
-		vallendeSteen = new Steen(-1, -1,this);
+		vallendeSteen = new Steen(0, 0);
 		addGameObject(vallendeSteen);
 		ui.updateSteen(vallendeSteen);
 	}
@@ -44,7 +44,7 @@ public class Tetrismania extends GameEngine {
 	}
 	
 	public void voegExtraSteenToe() {
-		Steen nieuweSteen = new Steen(20, 20, this);
+		Steen nieuweSteen = new Steen(20, 20);
 		addGameObject(nieuweSteen, 50, 0);
 	}
 
