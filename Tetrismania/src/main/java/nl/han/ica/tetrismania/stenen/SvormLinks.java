@@ -1,4 +1,8 @@
-package nl.han.ica.tetrismania;
+package nl.han.ica.tetrismania.stenen;
+
+import nl.han.ica.tetrismania.Steen;
+import nl.han.ica.tetrismania.SteenTile;
+import nl.han.ica.tetrismania.Tetrismania;
 
 public class SvormLinks extends Steen {
 	

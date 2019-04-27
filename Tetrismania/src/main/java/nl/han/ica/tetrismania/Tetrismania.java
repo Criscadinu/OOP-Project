@@ -5,6 +5,9 @@ import java.util.ArrayList;
 
 import nl.han.ica.OOPDProcessingEngineHAN.Engine.GameEngine;
 import nl.han.ica.OOPDProcessingEngineHAN.View.View;
+import nl.han.ica.tetrismania.stenen.LvormLinks;
+import nl.han.ica.tetrismania.stenen.LvormRechts;
+import nl.han.ica.tetrismania.stenen.SvormLinks;
 import nl.han.ica.tetrismania.stenen.Tvorm;
 import nl.han.ica.tetrismania.stenen.Vierkant;
 import processing.core.PApplet;
