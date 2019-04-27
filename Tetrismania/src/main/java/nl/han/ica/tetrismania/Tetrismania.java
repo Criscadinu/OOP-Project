@@ -23,10 +23,10 @@ public class Tetrismania extends GameEngine {
 	private UserInput ui;
 	private final int BREEDTE = 600;
 	private final int HOOGTE = 800;
-	private ArrayList<Steen> stenen = new ArrayList<>();
 
 	public static void main(String args[]) {
 		PApplet.main(new String[] { "nl.han.ica.tetrismania.Tetrismania" });
+
 	}
 
 	@Override
@@ -37,6 +37,7 @@ public class Tetrismania extends GameEngine {
 		vulStenenLijst();
 		maakBodemframe();
 		maakNieuweSteen();
+
 	}
 
 	public void vulStenenLijst() {
@@ -87,6 +88,13 @@ public class Tetrismania extends GameEngine {
 		size(screenWidth, screenHeight);
 	}
 
+	/**
+	 * dit is een steen
+	 * 
+	 * @author cc //Op het moment dat een rij beneden niks vol heeft en de rij
+	 *         erboven wel valt alles alsnog naar beneden. De rij eronder moet
+	 *         gewoon blijven staan
+	 */
 	@Override
 	public void update() {
 		if (vallendeSteen.gestopt) {
@@ -95,35 +103,47 @@ public class Tetrismania extends GameEngine {
 
 			}
 			this.maakNieuweSteen();
+
 		}
 
-		
-		for(int listY = 0; listY < this.HOOGTE / 40; listY++) {
-			int amount = 0;
+		regelVerwijderenVanStenen();
+
+	}
+	
+	/**
+	 * Deze functie zorgt voor het detecteren van een volle rij en verwijderd dan de stenen van die rij(en).
+	 * 
+	 * @author cc //Op het moment dat een rij beneden niks vol heeft en de rij
+	 *         erboven wel valt alles alsnog naar beneden. De rij eronder moet
+	 *         gewoon blijven staan
+	 */
+	private void regelVerwijderenVanStenen() {
+		for (int listY = 0; listY < this.HOOGTE / 40; listY++) {
 			int arrayY = 99999;
-			
-			for (SteenTile steen : geplaatsteTiles ) {
-				if(steen.getY() / 40 == listY ) {
+
+			for (SteenTile steen : geplaatsteTiles) {
+				if (steen.getY() / 40 == listY) {
 					geplaatsteYTiles.add(steen);
 				}
 			}
-			if(geplaatsteYTiles.size() == this.BREEDTE / 40 ) {
+			if (geplaatsteYTiles.size() == this.BREEDTE / 40) {
 				arrayY = listY / this.HOOGTE;
-				for (int c = 0; c < geplaatsteYTiles.size(); c++ ) {
+				for (int c = 0; c < geplaatsteYTiles.size(); c++) {
 					geplaatsteYTiles.get(c).setHeight(0);
 					geplaatsteYTiles.get(c).setWidth(0);
 				}
 				for (SteenTile steen : geplaatsteTiles) {
-					if(steen.getY() / 40 > arrayY) {
-						steen.setY(steen.getY()+40);
+					if (steen.getY() / 40 > arrayY) {
+						steen.setY(steen.getY() + 40);
 					}
 				}
 				arrayY = 99999;
 			}
-			
+
 			geplaatsteYTiles.clear();
-			
+
 		}
+
 	}
 
 	public int getHOOGTE() {

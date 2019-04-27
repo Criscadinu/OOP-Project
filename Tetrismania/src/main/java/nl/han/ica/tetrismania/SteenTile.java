@@ -30,7 +30,7 @@ public class SteenTile extends GameObject implements ICollidableWithGameObjects 
 	public void update() {
 
 		ms++;
-		if (ms % 10 == 1) {
+		if (ms % 40 == 1) {
 			if (!gestopt) {
 				y += 40;
 			}
