@@ -30,7 +30,7 @@ public class SteenTile extends GameObject implements ICollidableWithGameObjects 
 	public void update() {
 
 		ms++;
-		if (ms % 50 == 1) {
+		if (ms % 10 == 1) {
 			if (!gestopt) {
 				y += 40;
 			}
@@ -52,6 +52,7 @@ public class SteenTile extends GameObject implements ICollidableWithGameObjects 
 			System.out.println(collidedGameObjects.get(i).getX());
 			System.out.println(collidedGameObjects.get(i).getY());
 		}
+		
 
 	}
 

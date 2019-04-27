@@ -17,15 +17,14 @@ import java.util.Random;
 @SuppressWarnings("serial")
 public class Tetrismania extends GameEngine {
 
-	private ArrayList<Steen> geplaatsteStenen = new ArrayList<>();
+	private ArrayList<SteenTile> geplaatsteTiles = new ArrayList<>();
+	private ArrayList<SteenTile> geplaatsteYTiles = new ArrayList<>();
 	private Steen vallendeSteen;
 	private UserInput ui;
 	private final int BREEDTE = 600;
 	private final int HOOGTE = 800;
 	private ArrayList<Steen> stenen = new ArrayList<>();
-	
-	
-	
+
 	public static void main(String args[]) {
 		PApplet.main(new String[] { "nl.han.ica.tetrismania.Tetrismania" });
 	}
@@ -39,38 +38,37 @@ public class Tetrismania extends GameEngine {
 		maakBodemframe();
 		maakNieuweSteen();
 	}
-	
+
 	public void vulStenenLijst() {
 	}
-
 
 	public Steen getRandomSteen() {
 		Steen s = null;
 		Random random = new Random();
-		int randomInt = random.nextInt(4+1);
-		int randomPos = random.nextInt(3+1);
-		switch(randomInt) {
-		  case 0:
-			  s = new Vierkant(0,0,this);
-		    break;
-		  case 1:
-			  s = new Tvorm(0,0,this, randomPos);
-		    break;
-		  case 2:
-			  s = new SvormLinks(0, 0, this);
-			  break;
-		  case 3:
-			  s = new LvormLinks(0, 0, this);
-			  break;
-		  case 4:
-			  s = new LvormRechts(0, 0, this);
-			  break;
-			  
+		int randomInt = random.nextInt(4 + 1);
+		int randomPos = random.nextInt(3 + 1);
+		switch (randomInt) {
+		case 0:
+			s = new Vierkant(0, 0, this);
+			break;
+		case 1:
+			s = new Tvorm(0, 0, this, randomPos);
+			break;
+		case 2:
+			s = new SvormLinks(0, 0, this);
+			break;
+		case 3:
+			s = new LvormLinks(0, 0, this);
+			break;
+		case 4:
+			s = new LvormRechts(0, 0, this);
+			break;
+
 		}
-	    return s;
+		return s;
 	}
+
 	public void maakNieuweSteen() {
-		geplaatsteStenen.add(vallendeSteen);
 		vallendeSteen = getRandomSteen();
 		ui = new UserInput(vallendeSteen, this);
 		addGameObject(ui);
@@ -92,9 +90,40 @@ public class Tetrismania extends GameEngine {
 	@Override
 	public void update() {
 		if (vallendeSteen.gestopt) {
+			for (int i = 0; i < vallendeSteen.tiles.length; i++) {
+				geplaatsteTiles.add(vallendeSteen.tiles[i]);
+
+			}
 			this.maakNieuweSteen();
 		}
 
+		
+		for(int listY = 0; listY < this.HOOGTE / 40; listY++) {
+			int amount = 0;
+			int arrayY = 99999;
+			
+			for (SteenTile steen : geplaatsteTiles ) {
+				if(steen.getY() / 40 == listY ) {
+					geplaatsteYTiles.add(steen);
+				}
+			}
+			if(geplaatsteYTiles.size() == this.BREEDTE / 40 ) {
+				arrayY = listY / this.HOOGTE;
+				for (int c = 0; c < geplaatsteYTiles.size(); c++ ) {
+					geplaatsteYTiles.get(c).setHeight(0);
+					geplaatsteYTiles.get(c).setWidth(0);
+				}
+				for (SteenTile steen : geplaatsteTiles) {
+					if(steen.getY() / 40 > arrayY) {
+						steen.setY(steen.getY()+40);
+					}
+				}
+				arrayY = 99999;
+			}
+			
+			geplaatsteYTiles.clear();
+			
+		}
 	}
 
 	public int getHOOGTE() {
