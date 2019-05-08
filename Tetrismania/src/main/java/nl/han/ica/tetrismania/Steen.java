@@ -11,13 +11,14 @@ public abstract class Steen {
 	protected boolean gestopt = false;
 
 	public final static double GRAVITY_SPEED = 0.2;
+	private static final int GROOTTE = 40;
 
 	public Steen() {
 	}
 
 	/**
 	 * 
-	 * @author Cris
+	 * @author Danny
 	 *
 	 */
 	public void naarLinks() {
@@ -30,11 +31,16 @@ public abstract class Steen {
 
 	/**
 	 * 
-	 * @author Cris
+	 * @author Danny
 	 *
 	 */
 	public void naarRechts() {
 		if (!gestopt) {
+			for (int i = 0; i < tiles.length; i++) {
+				if (tiles[i].getX() == 600 - this.GROOTTE ) {
+					return;
+				}
+			}
 			for (int i = 0; i < tiles.length; i++) {
 				tiles[i].setX(tiles[i].getX() + 40);
 			}
@@ -43,7 +49,7 @@ public abstract class Steen {
 
 	/**
 	 * 
-	 * @author Cris
+	 * @author Danny
 	 *
 	 */
 	public void naarBeneden() {
@@ -65,7 +71,7 @@ public abstract class Steen {
 
 	/**
 	 * 
-	 * @author Cris
+	 * @author Danny
 	 *
 	 */
 	public void stop() {

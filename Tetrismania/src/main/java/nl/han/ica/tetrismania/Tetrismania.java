@@ -1,9 +1,12 @@
 
 package nl.han.ica.tetrismania;
 
+import java.awt.Color;
+import java.awt.GridLayout;
 import java.util.ArrayList;
 
 import nl.han.ica.OOPDProcessingEngineHAN.Engine.GameEngine;
+import nl.han.ica.OOPDProcessingEngineHAN.Objects.TextObject;
 import nl.han.ica.OOPDProcessingEngineHAN.View.View;
 import nl.han.ica.tetrismania.stenen.LvormLinks;
 import nl.han.ica.tetrismania.stenen.LvormRechts;
@@ -16,6 +19,9 @@ import processing.core.PApplet;
 
 import java.util.Random;
 
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+
 @SuppressWarnings("serial")
 public class Tetrismania extends GameEngine {
 
@@ -25,6 +31,11 @@ public class Tetrismania extends GameEngine {
 	private UserInput ui;
 	private final int BREEDTE = 600;
 	private final int HOOGTE = 800;
+	private int score = 0;
+	private enum Color {
+	    RED, YELLOW, BLUE, GREEN, ORANGE, CYAN, MAGENTA; //each is an instance of Color 
+	}
+	private TextObject txt = new TextObject(Integer.toString(score), 20);
 
 	public static void main(String args[]) {
 		PApplet.main(new String[] { "nl.han.ica.tetrismania.Tetrismania" });
@@ -36,6 +47,7 @@ public class Tetrismania extends GameEngine {
 		int worldWidth = BREEDTE;
 		int worldHeight = HOOGTE;
 		createViewWithoutViewport(worldWidth, worldHeight);
+		setTekst();
 		vulStenenLijst();
 		maakBodemframe();
 		maakNieuweSteen();
@@ -55,28 +67,25 @@ public class Tetrismania extends GameEngine {
 		int b = random.nextInt(256);
 		switch (randomInt) {
 		case 0:
-			s = new Vierkant(BREEDTE / 2 + 20, 0, r, g, b, this);
-			System.out.println(r);
-			System.out.println(g);
-			System.out.println(b);
+			s = new Vierkant(BREEDTE / 2 + 20, 40, r, g, b, this);
 			break;
 		case 1:
-			s = new Tvorm(BREEDTE / 2 + 20, 0, r, g, b, this);
+			s = new Tvorm(BREEDTE / 2 + 20, 40, r, g, b, this);
 			break;
 		case 2:
-			s = new SvormLinks(BREEDTE / 2 + 20, 0, r, g, b, this);
+			s = new SvormLinks(BREEDTE / 2 + 20, 40, r, g, b, this);
 			break;
 		case 3:
-			s = new SvormRechts(BREEDTE / 2 + 20, 0, r, g, b,  this);
+			s = new SvormRechts(BREEDTE / 2 + 20, 40, r, g, b, this);
 			break;
 		case 4:
-			s = new LvormRechts(BREEDTE / 2 + 20, 0, r, g, b, this);
+			s = new LvormRechts(BREEDTE / 2 + 20, 40, r, g, b, this);
 			break;
 		case 5:
-			s = new LvormLinks(BREEDTE / 2 + 20, 0, r, g, b,  this);
+			s = new LvormLinks(BREEDTE / 2 + 20, 40, r, g, b, this);
 			break;
 		case 6:
-			s = new Verticaalvorm(BREEDTE / 2 + 20, 0, r, g, b,  this);
+			s = new Verticaalvorm(BREEDTE / 2 + 20, 40, r, g, b, this);
 			break;
 
 		}
@@ -87,6 +96,14 @@ public class Tetrismania extends GameEngine {
 		vallendeSteen = getRandomSteen();
 		ui = new UserInput(vallendeSteen, this);
 		addGameObject(ui);
+	}
+
+	public void setTekst() {
+		fill(0, 102, 153, 204);
+		txt.setX(10);
+		txt.setY(20);
+		addGameObject(txt);
+		txt.draw(g);
 	}
 
 	public void maakBodemframe() {
@@ -118,14 +135,15 @@ public class Tetrismania extends GameEngine {
 			}
 			this.maakNieuweSteen();
 
+			regelVerwijderenVanStenen();
 		}
 
-		regelVerwijderenVanStenen();
 
 	}
-	
+
 	/**
-	 * Deze functie zorgt voor het detecteren van een volle rij en verwijderd dan de stenen van die rij(en).
+	 * Deze functie zorgt voor het detecteren van een volle rij en verwijderd dan de
+	 * stenen van die rij(en).
 	 * 
 	 * @author cc //Op het moment dat een rij beneden niks vol heeft en de rij
 	 *         erboven wel valt alles alsnog naar beneden. De rij eronder moet
@@ -133,7 +151,7 @@ public class Tetrismania extends GameEngine {
 	 */
 	private void regelVerwijderenVanStenen() {
 		for (int listY = 0; listY < this.HOOGTE / 40; listY++) {
-			int arrayY = 99999;
+			int arrayY = -1;
 
 			for (SteenTile steen : geplaatsteTiles) {
 				if (steen.getY() / 40 == listY) {
@@ -142,22 +160,39 @@ public class Tetrismania extends GameEngine {
 			}
 			if (geplaatsteYTiles.size() == this.BREEDTE / 40) {
 				arrayY = listY / this.HOOGTE;
-				for (int c = 0; c < geplaatsteYTiles.size(); c++) {
-					geplaatsteYTiles.get(c).setHeight(0);
-					geplaatsteYTiles.get(c).setWidth(0);
+				System.out.println(arrayY);
+				for (SteenTile steen : geplaatsteYTiles) {
+					steen.setHeight(0);
+					steen.setWidth(0);
 				}
 				for (SteenTile steen : geplaatsteTiles) {
-					if (steen.getY() / 40 > arrayY) {
+					if (steen.getY() / 40 < listY) {
 						steen.setY(steen.getY() + 40);
 					}
 				}
-				arrayY = 99999;
+				geplaatsteYTiles.clear();
+				setScore(100);
+				setText();
+				arrayY = -1;
+				return;
+			} else {
+				geplaatsteYTiles.clear();
 			}
-
 			geplaatsteYTiles.clear();
 
 		}
 
+	}
+	
+	
+
+	public void setScore(int addValue) {
+		this.score += addValue;
+	}
+
+	public void setText() {
+		txt.setText(Integer.toString(score));
+		txt.draw(g);
 	}
 
 	public int getHOOGTE() {
