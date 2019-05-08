@@ -1,9 +1,11 @@
 package nl.han.ica.tetrismania;
 
 import java.util.List;
+import java.util.Random;
 
 import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithGameObjects;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
+import nl.han.ica.tetrismania.stenen.Vierkant;
 import processing.core.PGraphics;
 
 /**
@@ -16,16 +18,24 @@ public class SteenTile extends GameObject implements ICollidableWithGameObjects 
 	public final static int GROOTTE = 40;
 	private boolean gestopt = false;
 	private Steen steen;
+	private int r, g, b;
 
 	private int ms;
 
-	public SteenTile(int x, int y, Steen steen) {
+	public SteenTile(int x, int y, int r, int g, int b, Steen steen) {
 		super(x, y, GROOTTE, GROOTTE);
 		this.steen = steen;
+		this.r = r;
+		this.g = g;
+		this.b = b;
 
 		ms = 0;
 	}
-
+	/**
+	 * 
+	 * @author Cris
+	 *
+	 */
 	@Override
 	public void update() {
 
@@ -39,23 +49,38 @@ public class SteenTile extends GameObject implements ICollidableWithGameObjects 
 
 	}
 
+	/**
+	 * 
+	 * @author Cris
+	 *
+	 */
 	@Override
-	public void draw(PGraphics g) {
-		g.fill(255, 0, 0);
-		g.rect(x, y, width, height);
+	public void draw(PGraphics p) {
+		p.fill(r, g, b);
+//		System.out.println(r);
+//		System.out.println(g);
+//		System.out.println(b);
+		p.rect(x, y, width, height);
 	}
 
+	/**
+	 * 
+	 * @author Cris
+	 *
+	 */
 	@Override
 	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
 		steen.stop();
-		for(int i = 0; i < collidedGameObjects.size(); i++) {
-			System.out.println(collidedGameObjects.get(i).getX());
-			System.out.println(collidedGameObjects.get(i).getY());
+		for (int i = 0; i < collidedGameObjects.size(); i++) {
 		}
-		
 
 	}
 
+	/**
+	 * 
+	 * @author Cris
+	 *
+	 */
 	public void stop() {
 		if (!gestopt)
 			y -= 40;

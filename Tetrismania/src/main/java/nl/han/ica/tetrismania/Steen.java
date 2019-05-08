@@ -12,39 +12,62 @@ public abstract class Steen {
 
 	public final static double GRAVITY_SPEED = 0.2;
 
-	
 	public Steen() {
 	}
 
+	/**
+	 * 
+	 * @author Cris
+	 *
+	 */
 	public void naarLinks() {
-		if(!gestopt) {
-		for (int i = 0; i < tiles.length; i++) {
-			tiles[i].setX(tiles[i].getX() - 40);
-		}
+		if (!gestopt) {
+			for (int i = 0; i < tiles.length; i++) {
+				tiles[i].setX(tiles[i].getX() - 40);
+			}
 		}
 	}
 
+	/**
+	 * 
+	 * @author Cris
+	 *
+	 */
 	public void naarRechts() {
-		if(!gestopt) {
-		for (int i = 0; i < tiles.length; i++) {
-			tiles[i].setX(tiles[i].getX() + 40);
-		}
+		if (!gestopt) {
+			for (int i = 0; i < tiles.length; i++) {
+				tiles[i].setX(tiles[i].getX() + 40);
+			}
 		}
 	}
 
+	/**
+	 * 
+	 * @author Cris
+	 *
+	 */
 	public void naarBeneden() {
-		if(!gestopt) {
+		if (!gestopt) {
 			for (int i = 0; i < tiles.length; i++) {
 
-				tiles[i].setY(tiles[i].getY() + 40 );
-			}}
+				tiles[i].setY(tiles[i].getY() + 40);
+			}
+		}
 
 	}
 
-	public void valNaarBodem() {
+	/**
+	 * 
+	 * @author Cris
+	 *
+	 */
+	public abstract void valNaarBodem();
 
-	}
-
+	/**
+	 * 
+	 * @author Cris
+	 *
+	 */
 	public void stop() {
 		for (int i = 0; i < tiles.length; i++) {
 			tiles[i].stop();
@@ -52,8 +75,18 @@ public abstract class Steen {
 		gestopt = true;
 	}
 
+	/**
+	 * 
+	 * @author Cris
+	 *
+	 */
 	public abstract void draaiLinksom();
 
+	/**
+	 * 
+	 * @author Cris
+	 *
+	 */
 	public abstract void draaiRechtsom();
 
 }

@@ -8,9 +8,9 @@ public class UserInput extends GameObject {
 	private Steen steen;
 	private Tetrismania tm;
 
-	public UserInput(Steen s, Tetrismania tm) {
+	public UserInput(Steen s, Tetrismania tetrismania) {
 		this.steen = s;
-		this.tm = tm;
+		this.tm = tetrismania;
 	}
 
 	@Override
@@ -28,21 +28,20 @@ public class UserInput extends GameObject {
 	}
 
 	public void keyPressed(int keyCode, char key) {
-//		System.out.println(keyCode);
 		if(steen.gestopt != true) {
-			if (keyCode == 39) { // +
+			if (keyCode == 39) { // Pijltjestoets rechts
 				steen.naarRechts();
-			} else if (keyCode == 37) {
+			} else if (keyCode == 37) { // Pijltjestoets links
 				steen.naarLinks();
-			} else if (keyCode == 32) {
+			} else if (keyCode == 32) { // Spatie
 				steen.valNaarBodem();
-			} else if (keyCode == 40) {
+			} else if (keyCode == 40) { // Pijltjestoets beneden
 				steen.naarBeneden();
-			} else if (keyCode == 65) {
+			} else if (keyCode == 65) { // A
 				steen.draaiLinksom();
-			} else if (keyCode == 68) {
+			} else if (keyCode == 68) { // D
 				steen.draaiRechtsom();
-			} else if (keyCode == 82) { // r
+			} else if (keyCode == 82) { 
 				tm.maakNieuweSteen();
 			}	
 		}

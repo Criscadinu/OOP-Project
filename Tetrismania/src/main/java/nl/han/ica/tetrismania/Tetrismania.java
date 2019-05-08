@@ -8,7 +8,9 @@ import nl.han.ica.OOPDProcessingEngineHAN.View.View;
 import nl.han.ica.tetrismania.stenen.LvormLinks;
 import nl.han.ica.tetrismania.stenen.LvormRechts;
 import nl.han.ica.tetrismania.stenen.SvormLinks;
+import nl.han.ica.tetrismania.stenen.SvormRechts;
 import nl.han.ica.tetrismania.stenen.Tvorm;
+import nl.han.ica.tetrismania.stenen.Verticaalvorm;
 import nl.han.ica.tetrismania.stenen.Vierkant;
 import processing.core.PApplet;
 
@@ -46,23 +48,35 @@ public class Tetrismania extends GameEngine {
 	public Steen getRandomSteen() {
 		Steen s = null;
 		Random random = new Random();
-		int randomInt = random.nextInt(4 + 1);
+		int randomInt = random.nextInt(6 + 1);
 		int randomPos = random.nextInt(3 + 1);
+		int r = random.nextInt(256);
+		int g = random.nextInt(256);
+		int b = random.nextInt(256);
 		switch (randomInt) {
 		case 0:
-			s = new Vierkant(0, 0, this);
+			s = new Vierkant(BREEDTE / 2 + 20, 0, r, g, b, this);
+			System.out.println(r);
+			System.out.println(g);
+			System.out.println(b);
 			break;
 		case 1:
-			s = new Tvorm(0, 0, this, randomPos);
+			s = new Tvorm(BREEDTE / 2 + 20, 0, r, g, b, this);
 			break;
 		case 2:
-			s = new SvormLinks(0, 0, this);
+			s = new SvormLinks(BREEDTE / 2 + 20, 0, r, g, b, this);
 			break;
 		case 3:
-			s = new LvormLinks(0, 0, this);
+			s = new SvormRechts(BREEDTE / 2 + 20, 0, r, g, b,  this);
 			break;
 		case 4:
-			s = new LvormRechts(0, 0, this);
+			s = new LvormRechts(BREEDTE / 2 + 20, 0, r, g, b, this);
+			break;
+		case 5:
+			s = new LvormLinks(BREEDTE / 2 + 20, 0, r, g, b,  this);
+			break;
+		case 6:
+			s = new Verticaalvorm(BREEDTE / 2 + 20, 0, r, g, b,  this);
 			break;
 
 		}

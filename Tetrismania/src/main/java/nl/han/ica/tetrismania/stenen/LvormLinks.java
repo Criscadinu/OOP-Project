@@ -4,39 +4,56 @@ import nl.han.ica.tetrismania.Steen;
 import nl.han.ica.tetrismania.SteenTile;
 import nl.han.ica.tetrismania.Tetrismania;
 
+/**
+ * 
+ * @author Cris
+ *
+ */
 public class LvormLinks extends Steen {
 
 	private int positie;
+	private int r, g, b;
 
-	public LvormLinks(int x, int y, Tetrismania tm) {
-		tekenLvormLinks(x, y, tm);
+	public LvormLinks(int x, int y, int r, int g, int b, Tetrismania tetrismania) {
+		this.r = r;
+		this.g = g;
+		this.b = b;
+		tekenLvormLinks(x, y, this.r, this.g, this.b, tetrismania);
 
 	}
-
-	private void tekenLvormLinks(int x, int y, Tetrismania app) {
-		SteenTile steenBoven = new SteenTile(x + 40, y, this);
-		SteenTile steenMidden = new SteenTile(x + 40, y + 40, this);
-		SteenTile steenBeneden = new SteenTile(x + 40, y + 80, this);
-		SteenTile steenBenedenLinks = new SteenTile(x, y + 80, this);
+	
+	/**
+	 * 
+	 * @author Cris
+	 *
+	 */
+	private void tekenLvormLinks(int x, int y, int r, int g, int b, Tetrismania tetrismania) {
+		SteenTile steenBoven = new SteenTile(x, y, r, g, b, this);
+		SteenTile steenMidden = new SteenTile(x, y + 40, r, g, b, this);
+		SteenTile steenBeneden = new SteenTile(x, y + 80, r, g, b, this);
+		SteenTile steenBenedenLinks = new SteenTile(x - 40, y + 80, r, g, b, this);
 		tiles[0] = steenBoven;
 		tiles[1] = steenMidden;
 		tiles[2] = steenBeneden;
 		tiles[3] = steenBenedenLinks;
-		app.addGameObject(steenBoven);
-		app.addGameObject(steenMidden);
-		app.addGameObject(steenBeneden);
-		app.addGameObject(steenBenedenLinks);
+		tetrismania.addGameObject(steenBoven);
+		tetrismania.addGameObject(steenMidden);
+		tetrismania.addGameObject(steenBeneden);
+		tetrismania.addGameObject(steenBenedenLinks);
 	}
-
+	
+	/**
+	 * 
+	 * @author Cris
+	 *
+	 */
 	@Override
 	public void draaiLinksom() {
-		System.out.println(positie);
 		if (positie == 3) {
 			positie = 0;
 		} else {
 			positie += 1;
 		}
-		System.out.println(positie);
 		switch (positie) {
 		case 0:
 			tiles[0].setX(tiles[0].getX() - 40);
@@ -85,11 +102,70 @@ public class LvormLinks extends Steen {
 		}
 
 	}
-
+	/**
+	 * 
+	 */
+	
 	@Override
 	public void draaiRechtsom() {
-		// TODO Auto-generated method stub
+		if (positie == 3) {
+			positie = 0;
+		} else {
+			positie += 1;
+		}
+		switch (positie) {
+		case 0:
+			tiles[0].setX(tiles[0].getX() + 40);
+            tiles[1].setX(tiles[1].getX() + 0);
+            tiles[2].setX(tiles[2].getX() - 40);
+            tiles[3].setX(tiles[3].getX() + 0);
 
+            tiles[0].setY(tiles[0].getY() - 40);
+            tiles[1].setY(tiles[1].getY() + 0);
+            tiles[2].setY(tiles[2].getY() + 40);
+            tiles[3].setY(tiles[3].getY() - 80);
+            break;
+        case 1:
+        	tiles[0].setX(tiles[0].getX() + 40);
+            tiles[1].setX(tiles[1].getX() + 0);
+            tiles[2].setX(tiles[2].getX() - 40);
+            tiles[3].setX(tiles[3].getX() + 0);
+
+            tiles[0].setY(tiles[0].getY() + 40);
+            tiles[1].setY(tiles[1].getY() + 0);
+            tiles[2].setY(tiles[2].getY() - 40);
+            tiles[3].setY(tiles[3].getY() - 80);
+            break;
+        case 2:
+            tiles[0].setX(tiles[0].getX() - 40);
+            tiles[1].setX(tiles[1].getX() + 0);
+            tiles[2].setX(tiles[2].getX() + 40);
+            tiles[3].setX(tiles[3].getX() + 80);
+
+            tiles[0].setY(tiles[0].getY() + 40);
+            tiles[1].setY(tiles[1].getY() + 0);
+            tiles[2].setY(tiles[2].getY() - 40);
+            tiles[3].setY(tiles[3].getY() + 0);
+            break;
+        case 3:
+            tiles[0].setX(tiles[0].getX() - 40);
+            tiles[1].setX(tiles[1].getX() + 0);
+            tiles[2].setX(tiles[2].getX() + 40);
+            tiles[3].setX(tiles[3].getX() + 0);
+
+            tiles[0].setY(tiles[0].getY() - 40);
+            tiles[1].setY(tiles[1].getY() + 0);
+            tiles[2].setY(tiles[2].getY() + 40);
+            tiles[3].setY(tiles[3].getY() + 80);
+			break;
+		}
+
+	}
+
+	@Override
+	public void valNaarBodem() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
