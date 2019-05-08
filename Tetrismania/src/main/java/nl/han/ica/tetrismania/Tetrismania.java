@@ -32,9 +32,7 @@ public class Tetrismania extends GameEngine {
 	private final int BREEDTE = 600;
 	private final int HOOGTE = 800;
 	private int score = 0;
-	private enum Color {
-	    RED, YELLOW, BLUE, GREEN, ORANGE, CYAN, MAGENTA; //each is an instance of Color 
-	}
+
 	private TextObject txt = new TextObject(Integer.toString(score), 20);
 
 	public static void main(String args[]) {
@@ -65,9 +63,12 @@ public class Tetrismania extends GameEngine {
 		int r = random.nextInt(256);
 		int g = random.nextInt(256);
 		int b = random.nextInt(256);
-		switch (randomInt) {
+		switch (1) {
 		case 0:
 			s = new Vierkant(BREEDTE / 2 + 20, 40, r, g, b, this);
+			System.out.println(r);
+			System.out.println(g);
+			System.out.println(b);
 			break;
 		case 1:
 			s = new Tvorm(BREEDTE / 2 + 20, 40, r, g, b, this);
@@ -183,8 +184,6 @@ public class Tetrismania extends GameEngine {
 		}
 
 	}
-	
-	
 
 	public void setScore(int addValue) {
 		this.score += addValue;

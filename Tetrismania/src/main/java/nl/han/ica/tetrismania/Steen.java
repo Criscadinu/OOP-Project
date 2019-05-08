@@ -24,6 +24,11 @@ public abstract class Steen {
 	public void naarLinks() {
 		if (!gestopt) {
 			for (int i = 0; i < tiles.length; i++) {
+				if (tiles[i].getX() == 0) {
+					return;
+				}
+			}
+			for (int i = 0; i < tiles.length; i++) {
 				tiles[i].setX(tiles[i].getX() - 40);
 			}
 		}
