@@ -103,6 +103,16 @@ public class Tetrismania extends GameEngine {
 		txt.draw(g);
 	}
 
+	public void setGameOverTekst() {
+		fill(255,0,0);
+		txt.setX(100);
+		txt.setY(120);
+		txt.setFontSize(50);
+		txt.setText("GAME OVER !!!!!");
+		addGameObject(txt);
+		txt.draw(g);
+	}
+
 	public void maakBodemframe() {
 		Frame bodemframe = new Frame(0, HOOGTE, BREEDTE, 10);
 		addGameObject(bodemframe);
@@ -128,9 +138,12 @@ public class Tetrismania extends GameEngine {
 		if (vallendeSteen.gestopt) {
 			for (int i = 0; i < vallendeSteen.tiles.length; i++) {
 				geplaatsteTiles.add(vallendeSteen.tiles[i]);
-
 			}
-			this.maakNieuweSteen();
+			if(checkPlayable()) {
+				this.maakNieuweSteen();
+			} else {
+				setGameOverTekst();
+			}
 
 			regelVerwijderenVanStenen();
 		}
@@ -179,6 +192,16 @@ public class Tetrismania extends GameEngine {
 
 		}
 
+	}
+
+	public boolean checkPlayable() {
+		for (SteenTile steen : geplaatsteTiles) {
+			if(steen.getY() <=120 && steen.getX() >= getBREEDTE() / 2 - 60 && steen.getX() >= getBREEDTE() / 2 + 60 ) {
+				return false;
+			}
+		}
+		return true;
+		
 	}
 
 	public void setScore(int addValue) {

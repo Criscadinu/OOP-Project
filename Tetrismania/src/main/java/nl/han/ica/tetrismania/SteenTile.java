@@ -57,9 +57,6 @@ public class SteenTile extends GameObject implements ICollidableWithGameObjects 
 	@Override
 	public void draw(PGraphics p) {
 		p.fill(r, g, b);
-//		System.out.println(r);
-//		System.out.println(g);
-//		System.out.println(b);
 		p.rect(x, y, width, height);
 	}
 

@@ -112,10 +112,6 @@ public abstract class Steen {
 	 */
 	public abstract void valNaarBodem();
 
-	public void checkTouched() {
-
-	}
-
 	public void checkInVeld() {
 		if (tiles[0].getX() < 0 || tiles[1].getX() < 0 || tiles[2].getX() < 0 || tiles[3].getX() < 0) {
 			tiles[0].setX(tiles[0].getX() + 40);
