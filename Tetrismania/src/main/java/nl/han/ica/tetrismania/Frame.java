@@ -14,7 +14,6 @@ public class Frame extends GameObject implements ICollidableWithGameObjects {
 
 	@Override
 	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
-		System.out.println("gebotst");
 	}
 
 	@Override

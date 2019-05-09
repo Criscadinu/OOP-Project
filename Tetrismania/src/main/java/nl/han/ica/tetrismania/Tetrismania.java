@@ -59,12 +59,9 @@ public class Tetrismania extends GameEngine {
 		int r = random.nextInt(256);
 		int g = random.nextInt(256);
 		int b = random.nextInt(256);
-		switch (randomInt) {
+		switch (1) {
 		case 0:
 			s = new Vierkant(BREEDTE / 2 + 20, 40, r, g, b, this);
-			System.out.println(r);
-			System.out.println(g);
-			System.out.println(b);
 			break;
 		case 1:
 			s = new Tvorm(BREEDTE / 2 + 20, 40, r, g, b, this);
