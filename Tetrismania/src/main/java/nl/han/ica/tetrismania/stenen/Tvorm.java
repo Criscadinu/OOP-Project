@@ -4,6 +4,11 @@ import nl.han.ica.tetrismania.Steen;
 import nl.han.ica.tetrismania.SteenTile;
 import nl.han.ica.tetrismania.Tetrismania;
 
+
+/**
+ * 
+ * @author Cris & Danny
+ */
 public class Tvorm extends Steen {
 
 	private int positie;
@@ -40,7 +45,7 @@ public class Tvorm extends Steen {
 		} else {
 			positie += 1;
 		}
-		if (checkIfPossibleLeft()) {
+		if (isRechtsMogelijk()) {
 			switch (positie) {
 			case 0:
 				tiles[0].setX(tiles[0].getX() - 40);
@@ -88,11 +93,15 @@ public class Tvorm extends Steen {
 				break;
 			}
 		}
-
 		this.checkInVeld();
 	}
-
-	private boolean checkIfPossibleLeft() {
+	
+	/**
+	 * 
+	 * Methode-omschrijving:
+	 * Hier vindt een controle plaats zodat die niet met een andere steen kan samenmelten.
+	 */
+	private boolean isLinksMogelijk() {
 		for (SteenTile st : super.tm.geplaatsteTiles) {
 			float x = st.getX();
 			float y = st.getY();
@@ -105,7 +114,12 @@ public class Tvorm extends Steen {
 		return true;
 	}
 
-	private boolean checkIfPossibleRight() {
+	/**
+	 * 
+	 * Methode-omschrijving:
+	 * Hier vindt een controle plaats zodat die niet met een andere steen kan samenmelten.
+	 */
+	private boolean isRechtsMogelijk() {
 		for (SteenTile st : super.tm.geplaatsteTiles) {
 			float x = st.getX();
 			float y = st.getY();
@@ -125,7 +139,7 @@ public class Tvorm extends Steen {
 		} else {
 			positie += 1;
 		}
-		if (checkIfPossibleRight()) {
+		if (isLinksMogelijk()) {
 			switch (positie) {
 			case 0:
 				tiles[0].setX(tiles[0].getX() - 40);

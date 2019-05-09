@@ -3,6 +3,12 @@ package nl.han.ica.tetrismania;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 import processing.core.PGraphics;
 
+/**
+ * 
+ * @Auteur Danny & Cris
+ * Deze klasse handelt de user input af. De stenen kunnen bewegen met de aangegeven toetsen in het commentaar in de keyPressed methode.
+ *
+ */
 public class UserInput extends GameObject {
 
 	private Steen steen;
@@ -26,7 +32,13 @@ public class UserInput extends GameObject {
 	public void updateSteen(Steen steen) {
 		this.steen = steen;
 	}
-
+	
+	/**
+	 * @param keyCode
+	 * @param key
+	 * Methode-omschrijving:
+	 * Op het moment dat de specifieke keycode wordt ingedrukt vindt er een interactie plaats.
+	 */
 	public void keyPressed(int keyCode, char key) {
 		if(steen.gestopt != true) {
 			if (keyCode == 39) { // Pijltjestoets rechts
@@ -38,7 +50,7 @@ public class UserInput extends GameObject {
 			} else if (keyCode == 40) { // Pijltjestoets beneden
 				steen.naarBeneden();
 			} else if (keyCode == 65) { // A
-				steen.draaiLinksom();
+				steen.draaiRechtsom();
 			} else if (keyCode == 68) { // D
 				steen.draaiRechtsom();
 			} else if (keyCode == 82) { 
@@ -49,8 +61,6 @@ public class UserInput extends GameObject {
 	}
 
 	/**
-	 * This event is fired when the GameEngine received a key release.
-	 * 
 	 * @param keyCode
 	 * @param key
 	 */

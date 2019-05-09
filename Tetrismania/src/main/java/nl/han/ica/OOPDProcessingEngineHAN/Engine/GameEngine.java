@@ -19,6 +19,8 @@ import processing.event.MouseEvent;
 import java.awt.*;
 import java.util.Vector;
 
+import ddf.minim.Minim;
+
 /**
  * GameEngine is the core of the game. Extending this class is required to make
  * use of the GameEngine.
@@ -26,6 +28,7 @@ import java.util.Vector;
  * This engine is created by: Bram Heijmink, Jeffrey Haen, Joost Elshof, Kenny
  * Ligthart, Mark Vaesen & Nico Smolders.
  */
+@SuppressWarnings("serial")
 public abstract class GameEngine extends PApplet {
 
 	/**
@@ -37,6 +40,11 @@ public abstract class GameEngine extends PApplet {
 	 * A vectorlist that holds all Dashboards, which are of type GameObject.
 	 */
 	private Vector<Dashboard> dashboards = new Vector<>();
+	
+	/**
+     * Creates an instance of minim that helps with loading music in the Sound class.
+     */
+    public Minim soundLibrary = new Minim(this);
 
 	/**
 	 * Instance of TileMap.
