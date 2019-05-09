@@ -74,6 +74,21 @@ public abstract class Steen {
 	 */
 	public abstract void valNaarBodem();
 
+	public void checkInVeld() {
+		if(tiles[0].getX() < 0|| tiles[1].getX() < 0|| tiles[2].getX() < 0|| tiles[3].getX() < 0) {
+			tiles[0].setX(tiles[0].getX() + 40);
+			tiles[1].setX(tiles[1].getX() + 40);
+			tiles[2].setX(tiles[2].getX() + 40);
+			tiles[3].setX(tiles[3].getX() + 40);
+		}
+		if(tiles[0].getX() > 600-40 || tiles[1].getX() > 600-40 || tiles[2].getX() > 600-40 || tiles[3].getX() > 600-40 ) {
+			tiles[0].setX(tiles[0].getX() - 40);
+			tiles[1].setX(tiles[1].getX() - 40);
+			tiles[2].setX(tiles[2].getX() - 40);
+			tiles[3].setX(tiles[3].getX() - 40);
+		}
+	}
+	
 	/**
 	 * 
 	 * @author Danny

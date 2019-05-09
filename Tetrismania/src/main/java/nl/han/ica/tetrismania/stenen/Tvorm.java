@@ -39,7 +39,6 @@ public class Tvorm extends Steen {
 		} else {
 			positie += 1;
 		}
-		System.out.println(positie);
 		switch (positie) {
 		case 0:
 			tiles[0].setX(tiles[0].getX() - 40);
@@ -86,6 +85,7 @@ public class Tvorm extends Steen {
 			tiles[3].setY(tiles[3].getY() + 40);
 			break;
 		}
+		this.checkInVeld();
 	}
 
 	@Override
@@ -95,7 +95,6 @@ public class Tvorm extends Steen {
 		} else {
 			positie += 1;
 		}
-		System.out.println(positie);
 		switch (positie) {
 		case 0:
 			tiles[0].setX(tiles[0].getX() - 40);
@@ -142,8 +141,19 @@ public class Tvorm extends Steen {
 			tiles[3].setY(tiles[3].getY() + 40);
 			break;
 		}
+		this.checkInVeld();
+//		if(tiles[0].getX() < 0||tiles[1].getX() < 0||tiles[2].getX() < 0||tiles[3].getX() < 0) {
+//
+//			tiles[0].setX(tiles[0].getX() + 40);
+//			tiles[1].setX(tiles[1].getX() + 40);
+//			tiles[2].setX(tiles[2].getX() + 40);
+//			tiles[3].setX(tiles[3].getX() + 40);
+//		}
+		checkInVeld();
 	}
 
+	
+	
 	@Override
 	public void valNaarBodem() {
 		// TODO Auto-generated method stub

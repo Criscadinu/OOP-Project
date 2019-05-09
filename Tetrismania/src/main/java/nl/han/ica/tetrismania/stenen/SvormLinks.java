@@ -86,6 +86,7 @@ public class SvormLinks extends Steen {
 			tiles[3].setY(tiles[3].getY() + 0);
 			break;
 		}
+		this.checkInVeld();
 	}
 		
 	
@@ -143,7 +144,8 @@ public class SvormLinks extends Steen {
 			tiles[3].setY(tiles[3].getY() + 0);
 			break;
 		}
-		
+
+		this.checkInVeld();
 	}
 
 	@Override

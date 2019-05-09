@@ -1,8 +1,6 @@
 
 package nl.han.ica.tetrismania;
 
-import java.awt.Color;
-import java.awt.GridLayout;
 import java.util.ArrayList;
 
 import nl.han.ica.OOPDProcessingEngineHAN.Engine.GameEngine;
@@ -19,8 +17,6 @@ import processing.core.PApplet;
 
 import java.util.Random;
 
-import javax.swing.JFrame;
-import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
 public class Tetrismania extends GameEngine {
@@ -63,7 +59,7 @@ public class Tetrismania extends GameEngine {
 		int r = random.nextInt(256);
 		int g = random.nextInt(256);
 		int b = random.nextInt(256);
-		switch (1) {
+		switch (randomInt) {
 		case 0:
 			s = new Vierkant(BREEDTE / 2 + 20, 40, r, g, b, this);
 			System.out.println(r);

@@ -101,6 +101,7 @@ public class LvormLinks extends Steen {
 			break;
 		}
 
+		this.checkInVeld();
 	}
 	/**
 	 * 
@@ -160,6 +161,7 @@ public class LvormLinks extends Steen {
 			break;
 		}
 
+		this.checkInVeld();
 	}
 
 	@Override

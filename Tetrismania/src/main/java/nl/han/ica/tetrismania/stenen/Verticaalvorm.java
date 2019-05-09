@@ -86,6 +86,7 @@ public class Verticaalvorm extends Steen {
 			break;
 		}
 
+		this.checkInVeld();
 	}
 
 	@Override

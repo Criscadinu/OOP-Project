@@ -86,6 +86,7 @@ public class SvormRechts extends Steen {
 			tiles[3].setY(tiles[3].getY() + 80);
 			break;
 		}
+		this.checkInVeld();
 	}
 		
 	
@@ -143,6 +144,7 @@ public class SvormRechts extends Steen {
 			tiles[3].setY(tiles[3].getY() + 80);
 			break;
 		}
+		this.checkInVeld();
 	}
 
 	@Override

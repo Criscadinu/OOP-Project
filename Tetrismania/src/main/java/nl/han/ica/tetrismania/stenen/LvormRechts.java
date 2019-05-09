@@ -86,6 +86,7 @@ public class LvormRechts extends Steen {
 			break;
 		}
 
+		this.checkInVeld();
 	}
 
 	@Override
@@ -141,7 +142,8 @@ public class LvormRechts extends Steen {
             tiles[3].setY(tiles[3].getY() + 0);
 			break;
 		}
-		
+
+		this.checkInVeld();
 
 	}
 
