@@ -58,7 +58,7 @@ public class Tetrismania extends GameEngine {
 		int r = random.nextInt(256);
 		int g = random.nextInt(256);
 		int b = random.nextInt(256);
-		switch (randomInt) {
+		switch (5) {
 		case 0:
 			s = new Vierkant(BREEDTE / 2 + 20, 40, r, g, b, this);
 			System.out.println(r);
@@ -112,6 +112,7 @@ public class Tetrismania extends GameEngine {
 		txt.draw(g);
 	}
 
+	public void 
 	public void maakBodemframe() {
 		Frame bodemframe = new Frame(0, HOOGTE, BREEDTE, 10);
 		addGameObject(bodemframe);
