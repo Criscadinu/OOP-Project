@@ -10,6 +10,7 @@ public class Tvorm extends Steen {
 	private int r, g, b;
 
 	public Tvorm(int x, int y, int r, int g, int b, Tetrismania tetrismania) {
+		super(tetrismania);
 		this.r = r;
 		this.g = g;
 		this.b = b;
@@ -142,14 +143,6 @@ public class Tvorm extends Steen {
 			break;
 		}
 		this.checkInVeld();
-//		if(tiles[0].getX() < 0||tiles[1].getX() < 0||tiles[2].getX() < 0||tiles[3].getX() < 0) {
-//
-//			tiles[0].setX(tiles[0].getX() + 40);
-//			tiles[1].setX(tiles[1].getX() + 40);
-//			tiles[2].setX(tiles[2].getX() + 40);
-//			tiles[3].setX(tiles[3].getX() + 40);
-//		}
-		checkInVeld();
 	}
 
 	

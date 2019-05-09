@@ -10,10 +10,12 @@ public abstract class Steen {
 	protected SteenTile[] tiles = new SteenTile[4];
 	protected boolean gestopt = false;
 
+	protected Tetrismania tm;
 	public final static double GRAVITY_SPEED = 0.2;
 	private static final int GROOTTE = 40;
 
-	public Steen() {
+	public Steen(Tetrismania tm) {
+		this.tm = tm;
 	}
 
 	/**
@@ -28,8 +30,25 @@ public abstract class Steen {
 					return;
 				}
 			}
-			for (int i = 0; i < tiles.length; i++) {
-				tiles[i].setX(tiles[i].getX() - 40);
+			if (tm.geplaatsteTiles.size() != 0) {
+				for (SteenTile steen : tm.geplaatsteTiles) {
+					float x = steen.getX();
+					float y = steen.getY();
+					for (int i = 0; i < tiles.length; i++) {
+						if (tiles[i].getX()-40 == x && tiles[i].getY() == y) {
+							System.out.println("doesnt work");
+							return;
+						}
+					}
+				}
+				for (int i = 0; i < tiles.length; i++) {
+					tiles[i].setX(tiles[i].getX() - 40);
+				}
+			} else {
+				for (int i = 0; i < tiles.length; i++) {
+					tiles[i].setX(tiles[i].getX() - 40);
+				}
+
 			}
 		}
 	}
@@ -42,12 +61,31 @@ public abstract class Steen {
 	public void naarRechts() {
 		if (!gestopt) {
 			for (int i = 0; i < tiles.length; i++) {
-				if (tiles[i].getX() == 600 - this.GROOTTE ) {
+				if (tiles[i].getX() == 600 - 40) {
 					return;
 				}
 			}
-			for (int i = 0; i < tiles.length; i++) {
-				tiles[i].setX(tiles[i].getX() + 40);
+			if (tm.geplaatsteTiles.size() != 0) {
+				for (SteenTile steen : tm.geplaatsteTiles) {
+					float x = steen.getX();
+					float y = steen.getY();
+					System.out.println("steen" + x + " - " + y);
+					for (int i = 0; i < tiles.length; i++) {
+						System.out.println("Tile" + tiles[i].getX() + " - " + tiles[i].getY());
+						if (tiles[i].getX() + 40 == x && tiles[i].getY() == y) {
+							System.out.println("doesnt work");
+							return;
+						}
+					}
+				}
+				for (int i = 0; i < tiles.length; i++) {
+					tiles[i].setX(tiles[i].getX() + 40);
+				}
+			} else {
+				for (int i = 0; i < tiles.length; i++) {
+					tiles[i].setX(tiles[i].getX() + 40);
+				}
+
 			}
 		}
 	}
@@ -74,21 +112,26 @@ public abstract class Steen {
 	 */
 	public abstract void valNaarBodem();
 
+	public void checkTouched() {
+
+	}
+
 	public void checkInVeld() {
-		if(tiles[0].getX() < 0|| tiles[1].getX() < 0|| tiles[2].getX() < 0|| tiles[3].getX() < 0) {
+		if (tiles[0].getX() < 0 || tiles[1].getX() < 0 || tiles[2].getX() < 0 || tiles[3].getX() < 0) {
 			tiles[0].setX(tiles[0].getX() + 40);
 			tiles[1].setX(tiles[1].getX() + 40);
 			tiles[2].setX(tiles[2].getX() + 40);
 			tiles[3].setX(tiles[3].getX() + 40);
 		}
-		if(tiles[0].getX() > 600-40 || tiles[1].getX() > 600-40 || tiles[2].getX() > 600-40 || tiles[3].getX() > 600-40 ) {
+		if (tiles[0].getX() > 600 - 40 || tiles[1].getX() > 600 - 40 || tiles[2].getX() > 600 - 40
+				|| tiles[3].getX() > 600 - 40) {
 			tiles[0].setX(tiles[0].getX() - 40);
 			tiles[1].setX(tiles[1].getX() - 40);
 			tiles[2].setX(tiles[2].getX() - 40);
 			tiles[3].setX(tiles[3].getX() - 40);
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @author Danny

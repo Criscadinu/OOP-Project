@@ -10,6 +10,7 @@ public class LvormRechts extends Steen {
 	private int r, g, b;
 
 	public LvormRechts(int x, int y, int r, int g, int b, Tetrismania tetrismania) {
+		super(tetrismania);
 		this.r = r;
 		this.g = g;
 		this.b = b;

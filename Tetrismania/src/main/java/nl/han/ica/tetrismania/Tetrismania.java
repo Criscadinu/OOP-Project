@@ -21,7 +21,7 @@ import java.util.Random;
 @SuppressWarnings("serial")
 public class Tetrismania extends GameEngine {
 
-	private ArrayList<SteenTile> geplaatsteTiles = new ArrayList<>();
+	protected ArrayList<SteenTile> geplaatsteTiles = new ArrayList<>();
 	private ArrayList<SteenTile> geplaatsteYTiles = new ArrayList<>();
 	private Steen vallendeSteen;
 	private UserInput ui;
