@@ -155,7 +155,7 @@ public class Tetrismania extends GameEngine {
 	}
 
 	private void initialiseerExplosieGeluid() {
-		explosie = new Sound(this, "src/main/java/nl/han/ica/tetrismania/media/explosie.mp3");
+		explosie = new Sound(this, "src/main/java/nl/han/ica/tetrismania/media/clear.wav");
 	}
 
 	/**
@@ -235,7 +235,8 @@ public class Tetrismania extends GameEngine {
 
 	/**
 	 * 
-	 * @param addValue Methode-omschrijving: Hier wordt de score opgehoogd.
+	 * @param addValue 
+	 * Methode-omschrijving: Hier wordt de score opgehoogd.
 	 */
 	public void setScore(int addValue) {
 		this.score += addValue;
