@@ -68,9 +68,6 @@ public class SteenTile extends GameObject implements ICollidableWithGameObjects 
 	@Override
 	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
 		steen.stop();
-		for (int i = 0; i < collidedGameObjects.size(); i++) {
-		}
-
 	}
 
 	/**
