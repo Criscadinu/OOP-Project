@@ -17,11 +17,10 @@ import processing.core.PApplet;
 
 import java.util.Random;
 
-
 @SuppressWarnings("serial")
 public class Tetrismania extends GameEngine {
 
-	protected ArrayList<SteenTile> geplaatsteTiles = new ArrayList<>();
+	public ArrayList<SteenTile> geplaatsteTiles = new ArrayList<>();
 	private ArrayList<SteenTile> geplaatsteYTiles = new ArrayList<>();
 	private Steen vallendeSteen;
 	private UserInput ui;
@@ -104,7 +103,7 @@ public class Tetrismania extends GameEngine {
 	}
 
 	public void setGameOverTekst() {
-		fill(255,0,0);
+		fill(255, 0, 0);
 		txt.setX(100);
 		txt.setY(120);
 		txt.setFontSize(50);
@@ -139,7 +138,7 @@ public class Tetrismania extends GameEngine {
 			for (int i = 0; i < vallendeSteen.tiles.length; i++) {
 				geplaatsteTiles.add(vallendeSteen.tiles[i]);
 			}
-			if(checkPlayable()) {
+			if (checkPlayable()) {
 				this.maakNieuweSteen();
 			} else {
 				setGameOverTekst();
@@ -147,7 +146,6 @@ public class Tetrismania extends GameEngine {
 
 			regelVerwijderenVanStenen();
 		}
-
 
 	}
 
@@ -196,12 +194,11 @@ public class Tetrismania extends GameEngine {
 
 	public boolean checkPlayable() {
 		for (SteenTile steen : geplaatsteTiles) {
-			if(steen.getY() <=120 && steen.getX() >= getBREEDTE() / 2 - 60 && steen.getX() >= getBREEDTE() / 2 + 60 ) {
+			if (steen.getY() <= 120 && steen.getX() >= getBREEDTE() / 2 - 60 && steen.getX() >= getBREEDTE() / 2 + 60) {
 				return false;
 			}
 		}
 		return true;
-		
 	}
 
 	public void setScore(int addValue) {

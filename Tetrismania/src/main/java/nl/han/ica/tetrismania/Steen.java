@@ -69,9 +69,7 @@ public abstract class Steen {
 				for (SteenTile steen : tm.geplaatsteTiles) {
 					float x = steen.getX();
 					float y = steen.getY();
-					System.out.println("steen" + x + " - " + y);
 					for (int i = 0; i < tiles.length; i++) {
-						System.out.println("Tile" + tiles[i].getX() + " - " + tiles[i].getY());
 						if (tiles[i].getX() + 40 == x && tiles[i].getY() == y) {
 							System.out.println("doesnt work");
 							return;

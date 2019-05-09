@@ -5,10 +5,10 @@ import nl.han.ica.tetrismania.SteenTile;
 import nl.han.ica.tetrismania.Tetrismania;
 
 public class SvormRechts extends Steen {
-	
+
 	private int positie;
 	private int r, g, b;
-	
+
 	public SvormRechts(int x, int y, int r, int g, int b, Tetrismania tetrismania) {
 		super(tetrismania);
 		this.r = r;
@@ -18,10 +18,36 @@ public class SvormRechts extends Steen {
 
 	}
 
+	private boolean checkIfPossibleLeft() {
+		for (SteenTile st : super.tm.geplaatsteTiles) {
+			float x = st.getX();
+			float y = st.getY();
+			for (int i = 0; i < 3; i++) {
+				if (tiles[i].getX() - 40 == x && tiles[i].getY() == y) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	private boolean checkIfPossibleRight() {
+		for (SteenTile st : super.tm.geplaatsteTiles) {
+			float x = st.getX();
+			float y = st.getY();
+			for (int i = 0; i < 3; i++) {
+				if (tiles[i].getX() + 40 == x && tiles[i].getY() == y) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
 	private void tekenSvormRechts(int x, int y, int r, int g, int b, Tetrismania tetrismania) {
 		positie = 0;
 		SteenTile steenLBoven = new SteenTile(x, y, r, g, b, this);
-		SteenTile steenMiddenLinks = new SteenTile(x, y + 40, r, g, b,  this);
+		SteenTile steenMiddenLinks = new SteenTile(x, y + 40, r, g, b, this);
 		SteenTile steenMiddenRechts = new SteenTile(x - 40, y + 40, r, g, b, this);
 		SteenTile steenRBeneden = new SteenTile(x - 40, y + 80, r, g, b, this);
 		tiles[0] = steenLBoven;
@@ -41,56 +67,56 @@ public class SvormRechts extends Steen {
 		} else {
 			positie += 1;
 		}
-		switch (positie) {
-		case 0:
-			tiles[0].setX(tiles[0].getX() + 40);
-			tiles[1].setX(tiles[1].getX() + 0);
-			tiles[2].setX(tiles[2].getX() - 40);
-			tiles[3].setX(tiles[3].getX() - 80);
+		if (checkIfPossibleLeft()) {
+			switch (positie) {
+			case 0:
+				tiles[0].setX(tiles[0].getX() + 40);
+				tiles[1].setX(tiles[1].getX() + 0);
+				tiles[2].setX(tiles[2].getX() - 40);
+				tiles[3].setX(tiles[3].getX() - 80);
 
-			tiles[0].setY(tiles[0].getY() - 40);
-			tiles[1].setY(tiles[1].getY() + 0);
-			tiles[2].setY(tiles[2].getY() - 40);
-			tiles[3].setY(tiles[3].getY() + 0);
-			break;
-		case 1:
-			tiles[0].setX(tiles[0].getX() + 40);
-			tiles[1].setX(tiles[1].getX() + 0);
-			tiles[2].setX(tiles[2].getX() + 40);
-			tiles[3].setX(tiles[3].getX() + 0);
+				tiles[0].setY(tiles[0].getY() - 40);
+				tiles[1].setY(tiles[1].getY() + 0);
+				tiles[2].setY(tiles[2].getY() - 40);
+				tiles[3].setY(tiles[3].getY() + 0);
+				break;
+			case 1:
+				tiles[0].setX(tiles[0].getX() + 40);
+				tiles[1].setX(tiles[1].getX() + 0);
+				tiles[2].setX(tiles[2].getX() + 40);
+				tiles[3].setX(tiles[3].getX() + 0);
 
-			tiles[0].setY(tiles[0].getY() + 40);
-			tiles[1].setY(tiles[1].getY() + 0);
-			tiles[2].setY(tiles[2].getY() - 40);
-			tiles[3].setY(tiles[3].getY() - 80);
-			break;
-		case 2:
-			tiles[0].setX(tiles[0].getX() - 40);
-			tiles[1].setX(tiles[1].getX() + 0);
-			tiles[2].setX(tiles[2].getX() + 40);
-			tiles[3].setX(tiles[3].getX() + 80);
+				tiles[0].setY(tiles[0].getY() + 40);
+				tiles[1].setY(tiles[1].getY() + 0);
+				tiles[2].setY(tiles[2].getY() - 40);
+				tiles[3].setY(tiles[3].getY() - 80);
+				break;
+			case 2:
+				tiles[0].setX(tiles[0].getX() - 40);
+				tiles[1].setX(tiles[1].getX() + 0);
+				tiles[2].setX(tiles[2].getX() + 40);
+				tiles[3].setX(tiles[3].getX() + 80);
 
-			tiles[0].setY(tiles[0].getY() + 40);
-			tiles[1].setY(tiles[1].getY() + 0);
-			tiles[2].setY(tiles[2].getY() + 40);
-			tiles[3].setY(tiles[3].getY() + 0);
-			break;
-		case 3:
-			tiles[0].setX(tiles[0].getX() - 40);
-			tiles[1].setX(tiles[1].getX() + 0);
-			tiles[2].setX(tiles[2].getX() - 40);
-			tiles[3].setX(tiles[3].getX() + 0);
+				tiles[0].setY(tiles[0].getY() + 40);
+				tiles[1].setY(tiles[1].getY() + 0);
+				tiles[2].setY(tiles[2].getY() + 40);
+				tiles[3].setY(tiles[3].getY() + 0);
+				break;
+			case 3:
+				tiles[0].setX(tiles[0].getX() - 40);
+				tiles[1].setX(tiles[1].getX() + 0);
+				tiles[2].setX(tiles[2].getX() - 40);
+				tiles[3].setX(tiles[3].getX() + 0);
 
-			tiles[0].setY(tiles[0].getY() - 40);
-			tiles[1].setY(tiles[1].getY() + 0);
-			tiles[2].setY(tiles[2].getY() + 40);
-			tiles[3].setY(tiles[3].getY() + 80);
-			break;
+				tiles[0].setY(tiles[0].getY() - 40);
+				tiles[1].setY(tiles[1].getY() + 0);
+				tiles[2].setY(tiles[2].getY() + 40);
+				tiles[3].setY(tiles[3].getY() + 80);
+				break;
+			}
 		}
 		this.checkInVeld();
 	}
-		
-	
 
 	@Override
 	public void draaiRechtsom() {
@@ -99,51 +125,53 @@ public class SvormRechts extends Steen {
 		} else {
 			positie += 1;
 		}
-		switch (positie) {
-		case 0:
-			tiles[0].setX(tiles[0].getX() + 40);
-			tiles[1].setX(tiles[1].getX() + 0);
-			tiles[2].setX(tiles[2].getX() - 40);
-			tiles[3].setX(tiles[3].getX() - 80);
+		if (checkIfPossibleRight()) {
+			switch (positie) {
+			case 0:
+				tiles[0].setX(tiles[0].getX() + 40);
+				tiles[1].setX(tiles[1].getX() + 0);
+				tiles[2].setX(tiles[2].getX() - 40);
+				tiles[3].setX(tiles[3].getX() - 80);
 
-			tiles[0].setY(tiles[0].getY() - 40);
-			tiles[1].setY(tiles[1].getY() + 0);
-			tiles[2].setY(tiles[2].getY() - 40);
-			tiles[3].setY(tiles[3].getY() + 0);
-			break;
-		case 1:
-			tiles[0].setX(tiles[0].getX() + 40);
-			tiles[1].setX(tiles[1].getX() + 0);
-			tiles[2].setX(tiles[2].getX() + 40);
-			tiles[3].setX(tiles[3].getX() + 0);
+				tiles[0].setY(tiles[0].getY() - 40);
+				tiles[1].setY(tiles[1].getY() + 0);
+				tiles[2].setY(tiles[2].getY() - 40);
+				tiles[3].setY(tiles[3].getY() + 0);
+				break;
+			case 1:
+				tiles[0].setX(tiles[0].getX() + 40);
+				tiles[1].setX(tiles[1].getX() + 0);
+				tiles[2].setX(tiles[2].getX() + 40);
+				tiles[3].setX(tiles[3].getX() + 0);
 
-			tiles[0].setY(tiles[0].getY() + 40);
-			tiles[1].setY(tiles[1].getY() + 0);
-			tiles[2].setY(tiles[2].getY() - 40);
-			tiles[3].setY(tiles[3].getY() - 80);
-			break;
-		case 2:
-			tiles[0].setX(tiles[0].getX() - 40);
-			tiles[1].setX(tiles[1].getX() + 0);
-			tiles[2].setX(tiles[2].getX() + 40);
-			tiles[3].setX(tiles[3].getX() + 80);
+				tiles[0].setY(tiles[0].getY() + 40);
+				tiles[1].setY(tiles[1].getY() + 0);
+				tiles[2].setY(tiles[2].getY() - 40);
+				tiles[3].setY(tiles[3].getY() - 80);
+				break;
+			case 2:
+				tiles[0].setX(tiles[0].getX() - 40);
+				tiles[1].setX(tiles[1].getX() + 0);
+				tiles[2].setX(tiles[2].getX() + 40);
+				tiles[3].setX(tiles[3].getX() + 80);
 
-			tiles[0].setY(tiles[0].getY() + 40);
-			tiles[1].setY(tiles[1].getY() + 0);
-			tiles[2].setY(tiles[2].getY() + 40);
-			tiles[3].setY(tiles[3].getY() + 0);
-			break;
-		case 3:
-			tiles[0].setX(tiles[0].getX() - 40);
-			tiles[1].setX(tiles[1].getX() + 0);
-			tiles[2].setX(tiles[2].getX() - 40);
-			tiles[3].setX(tiles[3].getX() + 0);
+				tiles[0].setY(tiles[0].getY() + 40);
+				tiles[1].setY(tiles[1].getY() + 0);
+				tiles[2].setY(tiles[2].getY() + 40);
+				tiles[3].setY(tiles[3].getY() + 0);
+				break;
+			case 3:
+				tiles[0].setX(tiles[0].getX() - 40);
+				tiles[1].setX(tiles[1].getX() + 0);
+				tiles[2].setX(tiles[2].getX() - 40);
+				tiles[3].setX(tiles[3].getX() + 0);
 
-			tiles[0].setY(tiles[0].getY() - 40);
-			tiles[1].setY(tiles[1].getY() + 0);
-			tiles[2].setY(tiles[2].getY() + 40);
-			tiles[3].setY(tiles[3].getY() + 80);
-			break;
+				tiles[0].setY(tiles[0].getY() - 40);
+				tiles[1].setY(tiles[1].getY() + 0);
+				tiles[2].setY(tiles[2].getY() + 40);
+				tiles[3].setY(tiles[3].getY() + 80);
+				break;
+			}
 		}
 		this.checkInVeld();
 	}
@@ -151,7 +179,7 @@ public class SvormRechts extends Steen {
 	@Override
 	public void valNaarBodem() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
