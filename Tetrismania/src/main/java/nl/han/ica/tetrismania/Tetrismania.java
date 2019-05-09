@@ -1,10 +1,11 @@
-
 package nl.han.ica.tetrismania;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import nl.han.ica.OOPDProcessingEngineHAN.Engine.GameEngine;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.TextObject;
+import nl.han.ica.OOPDProcessingEngineHAN.Sound.Sound;
 import nl.han.ica.OOPDProcessingEngineHAN.View.View;
 import nl.han.ica.tetrismania.stenen.LvormLinks;
 import nl.han.ica.tetrismania.stenen.LvormRechts;
@@ -15,11 +16,15 @@ import nl.han.ica.tetrismania.stenen.Verticaalvorm;
 import nl.han.ica.tetrismania.stenen.Vierkant;
 import processing.core.PApplet;
 
-import java.util.Random;
-
+/**
+ * 
+ * @auteur Cris & Danny Dit is het hoofdprogramma van Tetrismania.
+ */
 @SuppressWarnings("serial")
 public class Tetrismania extends GameEngine {
 
+	private Sound achtergrondMuziek;
+	private Sound explosie;
 	public ArrayList<SteenTile> geplaatsteTiles = new ArrayList<>();
 	private ArrayList<SteenTile> geplaatsteYTiles = new ArrayList<>();
 	private Steen vallendeSteen;
@@ -40,25 +45,27 @@ public class Tetrismania extends GameEngine {
 		int worldWidth = BREEDTE;
 		int worldHeight = HOOGTE;
 		createViewWithoutViewport(worldWidth, worldHeight);
-		setTekst();
-		vulStenenLijst();
+		initialiseerGeluid();
+		initialiseerExplosieGeluid();
+		tekenTekst();
 		maakBodemframe();
 		maakNieuweSteen();
 
 	}
 
-	public void vulStenenLijst() {
-	}
-
+	/**
+	 * 
+	 * @return Steen Methode-omschrijving: Deze methode geeft een willekeurig Steen
+	 *         object terug.
+	 */
 	public Steen getRandomSteen() {
 		Steen s = null;
 		Random random = new Random();
 		int randomInt = random.nextInt(6 + 1);
-		int randomPos = random.nextInt(3 + 1);
-		int r = random.nextInt(256);
-		int g = random.nextInt(256);
-		int b = random.nextInt(256);
-		switch (1) {
+		int r = random.nextInt((256 - 50) + 1) + 50;
+		int g = random.nextInt((256 - 50) + 1) + 50;
+		int b = random.nextInt((256 - 50) + 1) + 50;
+		switch (randomInt) {
 		case 0:
 			s = new Vierkant(BREEDTE / 2 + 20, 40, r, g, b, this);
 			break;
@@ -85,13 +92,20 @@ public class Tetrismania extends GameEngine {
 		return s;
 	}
 
+	/**
+	 * Methode-omschrijving: Hier wordt een Steen-object toegevoegd als GameObject
+	 * 
+	 */
 	public void maakNieuweSteen() {
 		vallendeSteen = getRandomSteen();
 		ui = new UserInput(vallendeSteen, this);
 		addGameObject(ui);
 	}
 
-	public void setTekst() {
+	/**
+	 * Methode-omschrijving: Deze geeft de score weer op het scherm.
+	 */
+	public void tekenTekst() {
 		fill(0, 102, 153, 204);
 		txt.setX(10);
 		txt.setY(20);
@@ -99,6 +113,9 @@ public class Tetrismania extends GameEngine {
 		txt.draw(g);
 	}
 
+	/**
+	 * Methode-omschrijving: Deze geeft de Game-Over tekst weer op het scherm.
+	 */
 	public void setGameOverTekst() {
 		fill(255, 0, 0);
 		txt.setX(100);
@@ -109,25 +126,40 @@ public class Tetrismania extends GameEngine {
 		txt.draw(g);
 	}
 
+	/**
+	 * Methode-omschrijving: Hier wordt een bodemframe als GameObject gemaakt om zo
+	 * te voorkomen dat de stenen niet door het scherm heen gaan.
+	 */
 	public void maakBodemframe() {
 		Frame bodemframe = new Frame(0, HOOGTE, BREEDTE, 10);
 		addGameObject(bodemframe);
 	}
 
+	/**
+	 * 
+	 * @param screenWidth
+	 * @param screenHeight Methode-omschrijving: Hier wordt het daadwerkelijke
+	 *                     scherm weergegeven.
+	 */
 	private void createViewWithoutViewport(int screenWidth, int screenHeight) {
 		View view = new View(screenWidth, screenHeight);
-		view.setBackground(150, 208, 158);
+		view.setBackground(95, 95, 95);
 
 		setView(view);
 		size(screenWidth, screenHeight);
 	}
 
+	private void initialiseerGeluid() {
+		achtergrondMuziek = new Sound(this, "src/main/java/nl/han/ica/tetrismania/media/tetris-gameboy-02.mp3");
+		achtergrondMuziek.loop(-1);
+	}
+
+	private void initialiseerExplosieGeluid() {
+		explosie = new Sound(this, "src/main/java/nl/han/ica/tetrismania/media/explosie.mp3");
+	}
+
 	/**
-	 * dit is een steen
-	 * 
-	 * @author cc //Op het moment dat een rij beneden niks vol heeft en de rij
-	 *         erboven wel valt alles alsnog naar beneden. De rij eronder moet
-	 *         gewoon blijven staan
+	 * Methode-omschrijving: De dynamiek van het spel gebeurt hier.
 	 */
 	@Override
 	public void update() {
@@ -147,12 +179,8 @@ public class Tetrismania extends GameEngine {
 	}
 
 	/**
-	 * Deze functie zorgt voor het detecteren van een volle rij en verwijderd dan de
-	 * stenen van die rij(en).
-	 * 
-	 * @author cc //Op het moment dat een rij beneden niks vol heeft en de rij
-	 *         erboven wel valt alles alsnog naar beneden. De rij eronder moet
-	 *         gewoon blijven staan
+	 * Methode-omschrijving: Deze functie zorgt voor het detecteren van een volle
+	 * rij en verwijderd dan de stenen van die rij(en).
 	 */
 	private void regelVerwijderenVanStenen() {
 		for (int listY = 0; listY < this.HOOGTE / 40; listY++) {
@@ -178,6 +206,8 @@ public class Tetrismania extends GameEngine {
 				geplaatsteYTiles.clear();
 				setScore(100);
 				setText();
+				explosie.rewind();
+				explosie.play();
 				arrayY = -1;
 				return;
 			} else {
@@ -189,19 +219,31 @@ public class Tetrismania extends GameEngine {
 
 	}
 
+	/**
+	 * 
+	 * @return boolean Methode-omschrijving: Hier wordt gekeken of een Steen-object
+	 *         het 'plafond' heeft bereikt en de speler dus Game-Over is.
+	 */
 	public boolean checkPlayable() {
 		for (SteenTile steen : geplaatsteTiles) {
-			if (steen.getY() <= 120 && steen.getX() >= getBREEDTE() / 2 - 60 && steen.getX() >= getBREEDTE() / 2 + 60) {
+			if (steen.getY() <= 200 && steen.getX() >= getBREEDTE() / 2 - 60 && steen.getX() >= getBREEDTE() / 2 + 60) {
 				return false;
 			}
 		}
 		return true;
 	}
 
+	/**
+	 * 
+	 * @param addValue Methode-omschrijving: Hier wordt de score opgehoogd.
+	 */
 	public void setScore(int addValue) {
 		this.score += addValue;
 	}
 
+	/**
+	 * Methode-omschrijving: Hier wordt de waarde van score ingezet.
+	 */
 	public void setText() {
 		txt.setText(Integer.toString(score));
 		txt.draw(g);

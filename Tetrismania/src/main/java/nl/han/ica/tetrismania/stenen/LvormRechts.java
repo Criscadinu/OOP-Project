@@ -32,8 +32,14 @@ public class LvormRechts extends Steen {
 		tetrismania.addGameObject(steenMiddenRechts);
 		tetrismania.addGameObject(steenRBeneden);
 	}
+	
+	/**
+	 * 
+	 * Methode-omschrijving:
+	 * Hier vindt een controle plaats zodat die niet met een andere steen kan samenmelten.
+	 */
 
-	private boolean checkIfPossibleLeft() {
+	private boolean isLinksMogelijk() {
 		for (SteenTile st : super.tm.geplaatsteTiles) {
 			float x = st.getX();
 			float y = st.getY();
@@ -45,8 +51,9 @@ public class LvormRechts extends Steen {
 		}
 		return true;
 	}
+	
 
-	private boolean checkIfPossibleRight() {
+	private boolean isRechtsMogelijk() {
 		for (SteenTile st : super.tm.geplaatsteTiles) {
 			float x = st.getX();
 			float y = st.getY();
@@ -66,7 +73,66 @@ public class LvormRechts extends Steen {
 		} else {
 			positie += 1;
 		}
-		if (checkIfPossibleLeft()) {
+		if (isRechtsMogelijk()) {
+			switch (positie) {
+			case 0:
+				tiles[0].setX(tiles[0].getX() + 40);
+				tiles[1].setX(tiles[1].getX() + 0);
+				tiles[2].setX(tiles[2].getX() - 40);
+				tiles[3].setX(tiles[3].getX() + 0);
+
+				tiles[0].setY(tiles[0].getY() - 40);
+				tiles[1].setY(tiles[1].getY() + 0);
+				tiles[2].setY(tiles[2].getY() + 40);
+				tiles[3].setY(tiles[3].getY() + 80);
+				break;
+			case 1:
+				tiles[0].setX(tiles[0].getX() + 40);
+				tiles[1].setX(tiles[1].getX() + 0);
+				tiles[2].setX(tiles[2].getX() - 40);
+				tiles[3].setX(tiles[3].getX() - 80);
+
+				tiles[0].setY(tiles[0].getY() + 40);
+				tiles[1].setY(tiles[1].getY() + 0);
+				tiles[2].setY(tiles[2].getY() - 40);
+				tiles[3].setY(tiles[3].getY() + 0);
+				break;
+			case 2:
+				tiles[0].setX(tiles[0].getX() - 40);
+				tiles[1].setX(tiles[1].getX() + 0);
+				tiles[2].setX(tiles[2].getX() + 40);
+				tiles[3].setX(tiles[3].getX() + 0);
+
+				tiles[0].setY(tiles[0].getY() + 40);
+				tiles[1].setY(tiles[1].getY() + 0);
+				tiles[2].setY(tiles[2].getY() - 40);
+				tiles[3].setY(tiles[3].getY() - 80);
+				break;
+			case 3:
+				tiles[0].setX(tiles[0].getX() - 40);
+				tiles[1].setX(tiles[1].getX() + 0);
+				tiles[2].setX(tiles[2].getX() + 40);
+				tiles[3].setX(tiles[3].getX() + 80);
+
+				tiles[0].setY(tiles[0].getY() - 40);
+				tiles[1].setY(tiles[1].getY() + 0);
+				tiles[2].setY(tiles[2].getY() + 40);
+				tiles[3].setY(tiles[3].getY() + 0);
+				break;
+			}
+		}
+
+		this.checkInVeld();
+	}
+
+	@Override
+	public void draaiRechtsom() {
+		if (positie == 3) {
+			positie = 0;
+		} else {
+			positie += 1;
+		}
+		if (isLinksMogelijk()) {
 			switch (positie) {
 			case 0:
 				tiles[0].setX(tiles[0].getX() - 40);
@@ -114,63 +180,6 @@ public class LvormRechts extends Steen {
 				break;
 			}
 		}
-		this.checkInVeld();
-	}
-
-	@Override
-	public void draaiRechtsom() {
-		if (positie == 3) {
-			positie = 0;
-		} else {
-			positie += 1;
-		}
-		switch (positie) {
-		case 0:
-			tiles[0].setX(tiles[0].getX() + 40);
-			tiles[1].setX(tiles[1].getX() + 0);
-			tiles[2].setX(tiles[2].getX() - 40);
-			tiles[3].setX(tiles[3].getX() + 0);
-
-			tiles[0].setY(tiles[0].getY() - 40);
-			tiles[1].setY(tiles[1].getY() + 0);
-			tiles[2].setY(tiles[2].getY() + 40);
-			tiles[3].setY(tiles[3].getY() + 80);
-			break;
-		case 1:
-			tiles[0].setX(tiles[0].getX() + 40);
-			tiles[1].setX(tiles[1].getX() + 0);
-			tiles[2].setX(tiles[2].getX() - 40);
-			tiles[3].setX(tiles[3].getX() - 80);
-
-			tiles[0].setY(tiles[0].getY() + 40);
-			tiles[1].setY(tiles[1].getY() + 0);
-			tiles[2].setY(tiles[2].getY() - 40);
-			tiles[3].setY(tiles[3].getY() + 0);
-			break;
-		case 2:
-			tiles[0].setX(tiles[0].getX() - 40);
-			tiles[1].setX(tiles[1].getX() + 0);
-			tiles[2].setX(tiles[2].getX() + 40);
-			tiles[3].setX(tiles[3].getX() + 0);
-
-			tiles[0].setY(tiles[0].getY() + 40);
-			tiles[1].setY(tiles[1].getY() + 0);
-			tiles[2].setY(tiles[2].getY() - 40);
-			tiles[3].setY(tiles[3].getY() - 80);
-			break;
-		case 3:
-			tiles[0].setX(tiles[0].getX() - 40);
-			tiles[1].setX(tiles[1].getX() + 0);
-			tiles[2].setX(tiles[2].getX() + 40);
-			tiles[3].setX(tiles[3].getX() + 80);
-
-			tiles[0].setY(tiles[0].getY() - 40);
-			tiles[1].setY(tiles[1].getY() + 0);
-			tiles[2].setY(tiles[2].getY() + 40);
-			tiles[3].setY(tiles[3].getY() + 0);
-			break;
-		}
-
 		this.checkInVeld();
 
 	}

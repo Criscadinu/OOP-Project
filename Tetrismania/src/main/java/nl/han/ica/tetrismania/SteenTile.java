@@ -1,17 +1,16 @@
 package nl.han.ica.tetrismania;
 
 import java.util.List;
-import java.util.Random;
 
 import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithGameObjects;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
-import nl.han.ica.tetrismania.stenen.Vierkant;
 import processing.core.PGraphics;
 
 /**
- * dit is een steen
  * 
- * @author cc //TODO
+ * @author Danny & Cris
+ * In deze klasse wordt een Steentile-object aangemaakt.
+ * In een Steen-object zitten 4 Steentiles. Hier wordt ook de collision op gedecteerd (per Steentile).
  */
 public class SteenTile extends GameObject implements ICollidableWithGameObjects {
 
@@ -51,7 +50,8 @@ public class SteenTile extends GameObject implements ICollidableWithGameObjects 
 
 	/**
 	 * 
-	 * @author Cris
+	 *  Methode-omschrijving:
+	 *  Hier wordt een steentile getekend.
 	 *
 	 */
 	@Override
@@ -62,7 +62,8 @@ public class SteenTile extends GameObject implements ICollidableWithGameObjects 
 
 	/**
 	 * 
-	 * @author Cris
+	 *  Methode-omschrijving:
+	 *  Collision detectie vindt hier plaats. Als er collision is dan stopt het Steen-object.
 	 *
 	 */
 	@Override
@@ -72,7 +73,8 @@ public class SteenTile extends GameObject implements ICollidableWithGameObjects 
 
 	/**
 	 * 
-	 * @author Cris
+	 * Methode-omschrijving:
+	 * Per tile de y-versnelling stoppen.
 	 *
 	 */
 	public void stop() {
