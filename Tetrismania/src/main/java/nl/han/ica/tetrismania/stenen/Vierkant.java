@@ -6,18 +6,18 @@ import nl.han.ica.tetrismania.Tetrismania;
 
 public class Vierkant extends Steen {
 	Tetrismania tetrismania;
-	private int r, g, b;
+
 
 	public Vierkant(int x, int y, int r, int g, int b, Tetrismania tetrismania) {
-		super(tetrismania);
+		super(r, g, b, tetrismania);
 		this.r = r;
 		this.g = g;
 		this.b = b;
-		tekenVierkant(x, y, this.r, this.g, this.b, tetrismania);
+		tekenVierkant(x, y, tetrismania);
 		this.tetrismania = tetrismania;
 	}
 
-	private void tekenVierkant(int x, int y, int r, int g, int b, Tetrismania tetrismania) {
+	private void tekenVierkant(int x, int y, Tetrismania tetrismania) {
 		SteenTile steenLBoven = new SteenTile(x, y, r, g, b, this);
 		SteenTile steenRBoven = new SteenTile(x + 40, y, r, g, b, this);
 		SteenTile steenLBeneden = new SteenTile(x, y + 40, r, g, b, this);

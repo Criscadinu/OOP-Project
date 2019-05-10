@@ -9,20 +9,17 @@ import nl.han.ica.tetrismania.Tetrismania;
  * 
  * @author Cris & Danny
  */
-public class Tvorm extends Steen {
+public class TVorm extends Steen {
 
 	private int positie;
-	private int r, g, b;
 
-	public Tvorm(int x, int y, int r, int g, int b, Tetrismania tetrismania) {
-		super(tetrismania);
-		this.r = r;
-		this.g = g;
-		this.b = b;
-		tekenTvorm(x, y, this.r, this.g, this.b, tetrismania);
+
+	public TVorm(int x, int y, int r, int g, int b, Tetrismania tetrismania) {
+		super(r, g, b, tetrismania);
+		tekenTvorm(x, y, tetrismania);
 	}
 
-	private void tekenTvorm(int x, int y, int r, int g, int b, Tetrismania tetrismania) {
+	private void tekenTvorm(int x, int y, Tetrismania tetrismania) {
 		positie = 0;
 		SteenTile steenLBoven = new SteenTile(x, y, r, g, b, this);
 		SteenTile steenRBoven = new SteenTile(x + 40, y, r, g, b, this);

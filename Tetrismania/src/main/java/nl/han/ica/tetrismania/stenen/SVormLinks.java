@@ -4,21 +4,18 @@ import nl.han.ica.tetrismania.Steen;
 import nl.han.ica.tetrismania.SteenTile;
 import nl.han.ica.tetrismania.Tetrismania;
 
-public class SvormLinks extends Steen {
+public class SVormLinks extends Steen {
 
 	private int positie;
-	private int r, g, b;
 
-	public SvormLinks(int x, int y, int r, int g, int b, Tetrismania tetrismania) {
-		super(tetrismania);
-		this.r = r;
-		this.g = g;
-		this.b = b;
-		tekenSvormLinks(x, y, this.r, this.g, this.b, tetrismania);
+
+	public SVormLinks(int x, int y, int r, int g, int b, Tetrismania tetrismania) {
+		super(r, g, b, tetrismania);
+		tekenSvormLinks(x, y, tetrismania);
 
 	}
 
-	private void tekenSvormLinks(int x, int y, int r, int g, int b, Tetrismania tetrismania) {
+	private void tekenSvormLinks(int x, int y, Tetrismania tetrismania) {
 		positie = 0;
 		SteenTile steenLBoven = new SteenTile(x, y, r, g, b, this);
 		SteenTile steenMiddenLinks = new SteenTile(x, y + 40, r, g, b, this);

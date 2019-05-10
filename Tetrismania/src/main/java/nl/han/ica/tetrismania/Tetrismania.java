@@ -7,12 +7,12 @@ import nl.han.ica.OOPDProcessingEngineHAN.Engine.GameEngine;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.TextObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Sound.Sound;
 import nl.han.ica.OOPDProcessingEngineHAN.View.View;
-import nl.han.ica.tetrismania.stenen.LvormLinks;
-import nl.han.ica.tetrismania.stenen.LvormRechts;
-import nl.han.ica.tetrismania.stenen.SvormLinks;
-import nl.han.ica.tetrismania.stenen.SvormRechts;
-import nl.han.ica.tetrismania.stenen.Tvorm;
-import nl.han.ica.tetrismania.stenen.Verticaalvorm;
+import nl.han.ica.tetrismania.stenen.LVormLinks;
+import nl.han.ica.tetrismania.stenen.LVormRechts;
+import nl.han.ica.tetrismania.stenen.SVormLinks;
+import nl.han.ica.tetrismania.stenen.SVormRechts;
+import nl.han.ica.tetrismania.stenen.TVorm;
+import nl.han.ica.tetrismania.stenen.VerticaalVorm;
 import nl.han.ica.tetrismania.stenen.Vierkant;
 import processing.core.PApplet;
 
@@ -26,7 +26,6 @@ public class Tetrismania extends GameEngine {
 	private Sound achtergrondMuziek;
 	private Sound explosie;
 	public ArrayList<SteenTile> geplaatsteTiles = new ArrayList<>();
-	private ArrayList<SteenTile> geplaatsteYTiles = new ArrayList<>();
 	private Steen vallendeSteen;
 	private UserInput ui;
 	private final int BREEDTE = 600;
@@ -63,27 +62,28 @@ public class Tetrismania extends GameEngine {
 		int r = random.nextInt((256 - 50) + 1) + 50;
 		int g = random.nextInt((256 - 50) + 1) + 50;
 		int b = random.nextInt((256 - 50) + 1) + 50;
+		randomInt = 6;
 		switch (randomInt) {
 		case 0:
 			s = new Vierkant(BREEDTE / 2 + 20, 40, r, g, b, this);
 			break;
 		case 1:
-			s = new Tvorm(BREEDTE / 2 + 20, 40, r, g, b, this);
+			s = new TVorm(BREEDTE / 2 + 20, 40, r, g, b, this);
 			break;
 		case 2:
-			s = new SvormLinks(BREEDTE / 2 + 20, 40, r, g, b, this);
+			s = new SVormLinks(BREEDTE / 2 + 20, 40, r, g, b, this);
 			break;
 		case 3:
-			s = new SvormRechts(BREEDTE / 2 + 20, 40, r, g, b, this);
+			s = new SVormRechts(BREEDTE / 2 + 20, 40, r, g, b, this);
 			break;
 		case 4:
-			s = new LvormRechts(BREEDTE / 2 + 20, 40, r, g, b, this);
+			s = new LVormRechts(BREEDTE / 2 + 20, 40, r, g, b, this);
 			break;
 		case 5:
-			s = new LvormLinks(BREEDTE / 2 + 20, 40, r, g, b, this);
+			s = new LVormLinks(BREEDTE / 2 + 20, 40, r, g, b, this);
 			break;
 		case 6:
-			s = new Verticaalvorm(BREEDTE / 2 + 20, 40, r, g, b, this);
+			s = new VerticaalVorm(BREEDTE / 2 + 20, 40, r, g, b, this);
 			break;
 
 		}
@@ -148,7 +148,7 @@ public class Tetrismania extends GameEngine {
 	 * Methode-omschrijving: Hier wordt een bodemframe als GameObject gemaakt om zo
 	 * te voorkomen dat de stenen niet door het scherm heen gaan.
 	 */
-	public void maakBodemframe() {
+	private void maakBodemframe() {
 		Frame bodemframe = new Frame(0, HOOGTE, BREEDTE, 10);
 		addGameObject(bodemframe);
 	}
@@ -192,48 +192,65 @@ public class Tetrismania extends GameEngine {
 					setGameOverTekst();
 				}
 
-				regelVerwijderenVanStenen();
+				ArrayList<Integer> volleRijen = detecteerVolleRijen();
+				for (int rijIndex : volleRijen) {
+					verwijderRij(rijIndex);
+
+				}
+				if (volleRijen.size() > 0) {
+					explosie.rewind();
+					explosie.play();
+					voegScoreToe(100 * volleRijen.size());
+					setText();
+
+				}
+
 			}
 		}
 
 	}
 
 	/**
-	 * Methode-omschrijving: Deze functie zorgt voor het detecteren van een volle
-	 * rij en verwijderd dan de stenen van die rij(en).
+	 * Deze functie regelt het verwijderen van rij met index 'rij' en laat de
+	 * overige tiles naar beneden vallen.
+	 * 
+	 * @param rij
 	 */
-	private void regelVerwijderenVanStenen() {
-		for (int listY = 0; listY < this.HOOGTE / 40; listY++) {
-			int arrayY;
+	private void verwijderRij(int rij) {
 
-			for (SteenTile steen : geplaatsteTiles) {
-				if (steen.getY() / 40 == listY) {
-					geplaatsteYTiles.add(steen);
+		ArrayList<SteenTile> teVerwijderenTiles = new ArrayList<>(); // we gooien de te verwijderen tiles in een aparte
+																		// lijst omdat we de for-each loop niet kunnen
+																		// storen.
+
+		for (SteenTile tile : geplaatsteTiles) {
+			if (tile.getY() / Steen.GROOTTE == rij) {
+				deleteGameObject(tile);
+				teVerwijderenTiles.add(tile);
+			} else if (tile.getY() / Steen.GROOTTE < rij) {
+				tile.setY(tile.getY() + Steen.GROOTTE);
+			}
+		}
+		for (SteenTile t : teVerwijderenTiles) {
+			geplaatsteTiles.remove(t);
+		}
+	}
+
+	private ArrayList<Integer> detecteerVolleRijen() {
+		ArrayList<Integer> gedetecteerd = new ArrayList<Integer>();
+		for (int rij = 0; rij < HOOGTE / Steen.GROOTTE; rij++) {
+			int tileTeller = 0;
+			for (SteenTile tile : geplaatsteTiles) {
+				if (tile.getY() / Steen.GROOTTE == rij) {
+					tileTeller++;
 				}
 			}
-			if (geplaatsteYTiles.size() == this.BREEDTE / 40) {
-				arrayY = listY / this.HOOGTE;
-				for (SteenTile steen : geplaatsteYTiles) {
-					steen.setHeight(0);
-					steen.setWidth(0);
-				}
-				for (SteenTile steen : geplaatsteTiles) {
-					if (steen.getY() / 40 < listY) {
-						steen.setY(steen.getY() + 40);
-					}
-				}
-				geplaatsteYTiles.clear();
-				setScore(100);
-				setText();
-				explosie.rewind();
-				explosie.play();
-				arrayY = -1;
-			}
-			geplaatsteYTiles.clear();
-
+			if (tileTeller == BREEDTE / Steen.GROOTTE)
+				gedetecteerd.add(rij);
 		}
 
+		return gedetecteerd;
 	}
+
 
 	/**
 	 * 
@@ -242,7 +259,7 @@ public class Tetrismania extends GameEngine {
 	 */
 	public boolean checkPlayable() {
 		for (SteenTile steen : geplaatsteTiles) {
-			if (steen.getY() <= 200 && steen.getX() >= getBREEDTE() / 2 - 60 && steen.getX() >= getBREEDTE() / 2 + 60) {
+			if (steen.getY() <= 200 && steen.getX() >= BREEDTE / 2 - 60 && steen.getX() >= BREEDTE / 2 + 60) {
 				return false;
 			}
 		}
@@ -253,7 +270,7 @@ public class Tetrismania extends GameEngine {
 	 * 
 	 * @param addValue Methode-omschrijving: Hier wordt de score opgehoogd.
 	 */
-	public void setScore(int addValue) {
+	public void voegScoreToe(int addValue) {
 		this.score += addValue;
 	}
 
@@ -263,14 +280,6 @@ public class Tetrismania extends GameEngine {
 	public void setText() {
 		txt.setText(Integer.toString(score));
 		txt.draw(g);
-	}
-
-	public int getHOOGTE() {
-		return HOOGTE;
-	}
-
-	public int getBREEDTE() {
-		return BREEDTE;
 	}
 
 }

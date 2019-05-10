@@ -30,11 +30,7 @@ public class SteenTile extends GameObject implements ICollidableWithGameObjects 
 
 		ms = 0;
 	}
-	/**
-	 * 
-	 * @author Cris
-	 *
-	 */
+
 	@Override
 	public void update() {
 
@@ -49,10 +45,8 @@ public class SteenTile extends GameObject implements ICollidableWithGameObjects 
 	}
 
 	/**
-	 * 
 	 *  Methode-omschrijving:
 	 *  Hier wordt een steentile getekend.
-	 *
 	 */
 	@Override
 	public void draw(PGraphics p) {
@@ -60,11 +54,9 @@ public class SteenTile extends GameObject implements ICollidableWithGameObjects 
 		p.rect(x, y, width, height);
 	}
 
-	/**
-	 * 
+	/*
 	 *  Methode-omschrijving:
 	 *  Collision detectie vindt hier plaats. Als er collision is dan stopt het Steen-object.
-	 *
 	 */
 	@Override
 	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
@@ -72,10 +64,8 @@ public class SteenTile extends GameObject implements ICollidableWithGameObjects 
 	}
 
 	/**
-	 * 
 	 * Methode-omschrijving:
 	 * Per tile de y-versnelling stoppen.
-	 *
 	 */
 	public void stop() {
 		if (!gestopt)

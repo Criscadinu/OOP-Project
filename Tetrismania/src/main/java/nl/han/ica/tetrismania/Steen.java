@@ -2,20 +2,25 @@ package nl.han.ica.tetrismania;
 
 /**
  * 
- * @auteur Cris & Danny Dit is de klasse die zorgdraagt voor wat er bij de
- *         specifieke interactie gebeurt.
+ * @auteur Cris & Danny 
+ * Dit is de klasse die zorgdraagt voor wat er bij de
+ * specifieke interactie gebeurt.
  * 
  */
 public abstract class Steen {
 
 	protected SteenTile[] tiles = new SteenTile[4];
 	protected boolean gestopt = false;
-
 	protected Tetrismania tm;
+	protected int r, g, b;
 	public final static double GRAVITY_SPEED = 0.2;
+	public final static int GROOTTE = 40; //TODO overal gebruiken.
 
-	public Steen(Tetrismania tm) {
+	public Steen(int r, int g, int b, Tetrismania tm) {
 		this.tm = tm;
+		this.r = r;
+		this.g = g;
+		this.b = b;
 	}
 
 	/**
