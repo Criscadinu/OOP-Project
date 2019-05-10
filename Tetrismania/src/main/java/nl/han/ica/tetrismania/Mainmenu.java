@@ -3,6 +3,11 @@ package nl.han.ica.tetrismania;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 import processing.core.PGraphics;
 
+/**
+ * 
+ * @author Danny & Cris
+ * Dit is de klasse met alle functionaliteiten van het Hoofdmenu
+ */
 public class Mainmenu extends GameObject {
 	private Tetrismania tm;
 	boolean rectOver = false;

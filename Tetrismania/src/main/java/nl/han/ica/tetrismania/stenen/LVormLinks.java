@@ -6,7 +6,8 @@ import nl.han.ica.tetrismania.Tetrismania;
 
 /**
  * 
- * @author Cris
+ * @author Cris & Danny
+ * Dit is de LVorm Links
  *
  */
 public class LVormLinks extends Steen {

@@ -8,6 +8,7 @@ import nl.han.ica.tetrismania.Tetrismania;
 /**
  * 
  * @author Cris & Danny
+ * De TVorm
  */
 public class TVorm extends Steen {
 

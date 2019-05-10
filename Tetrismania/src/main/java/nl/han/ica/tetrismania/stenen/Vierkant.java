@@ -4,6 +4,12 @@ import nl.han.ica.tetrismania.Steen;
 import nl.han.ica.tetrismania.SteenTile;
 import nl.han.ica.tetrismania.Tetrismania;
 
+/**
+ * 
+ * @author Cris & Danny
+ * De VierkantVorm
+ *
+ */
 public class Vierkant extends Steen {
 	Tetrismania tetrismania;
 

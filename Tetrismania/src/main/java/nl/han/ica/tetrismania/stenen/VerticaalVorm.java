@@ -4,6 +4,11 @@ import nl.han.ica.tetrismania.Steen;
 import nl.han.ica.tetrismania.SteenTile;
 import nl.han.ica.tetrismania.Tetrismania;
 
+/**
+ * 
+ * @author Cris & Danny
+ * De VerticaalVorm
+ */
 public class VerticaalVorm extends Steen {
 
 	private int positie;

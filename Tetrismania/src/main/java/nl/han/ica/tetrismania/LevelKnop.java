@@ -2,6 +2,13 @@ package nl.han.ica.tetrismania;
 
 import processing.core.PGraphics;
 
+
+/**
+ * 
+ * @author Cris & Danny
+ * Hierin staat de code voor het bepalen van de moeilijkheidsgraad
+ *
+ */
 public class LevelKnop extends Knop {
 	protected Tetrismania tm;
 	protected int lvl;

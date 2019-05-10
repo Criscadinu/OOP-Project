@@ -4,6 +4,12 @@ import java.awt.Button;
 
 import processing.core.PGraphics;
 
+/**
+ * 
+ * @author Danny & Cris
+ * De functionaliteiten van de PLAY button
+ *
+ */
 @SuppressWarnings("serial")
 public class PlayKnop extends Knop{
 	protected int x,y,breedte,hoogte, textMargin;

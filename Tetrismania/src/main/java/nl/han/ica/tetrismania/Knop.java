@@ -2,6 +2,12 @@ package nl.han.ica.tetrismania;
 
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 
+/**
+ * 
+ * @author Danny & Cris
+ * Dit is de superklasse met de abstracte methodes die het gedrag van de knoppen bepaald.
+ *
+ */
 public abstract class Knop extends GameObject{
 	
 	protected String Text;
