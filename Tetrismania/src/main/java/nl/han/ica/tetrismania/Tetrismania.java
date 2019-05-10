@@ -99,7 +99,7 @@ public class Tetrismania extends GameEngine {
 		spelGestart = true;
 
 	}
-	
+
 	public void toonMenu() {
 		addGameObject(hoofdmenu);
 	}
@@ -107,6 +107,7 @@ public class Tetrismania extends GameEngine {
 	public void verbergMenu() {
 		deleteGameObject(hoofdmenu);
 	}
+
 	/**
 	 * Methode-omschrijving: Hier wordt een Steen-object toegevoegd als GameObject
 	 * 
@@ -203,7 +204,7 @@ public class Tetrismania extends GameEngine {
 	 */
 	private void regelVerwijderenVanStenen() {
 		for (int listY = 0; listY < this.HOOGTE / 40; listY++) {
-			int arrayY = -1;
+			int arrayY;
 
 			for (SteenTile steen : geplaatsteTiles) {
 				if (steen.getY() / 40 == listY) {
@@ -212,7 +213,6 @@ public class Tetrismania extends GameEngine {
 			}
 			if (geplaatsteYTiles.size() == this.BREEDTE / 40) {
 				arrayY = listY / this.HOOGTE;
-				System.out.println(arrayY);
 				for (SteenTile steen : geplaatsteYTiles) {
 					steen.setHeight(0);
 					steen.setWidth(0);
@@ -228,9 +228,6 @@ public class Tetrismania extends GameEngine {
 				explosie.rewind();
 				explosie.play();
 				arrayY = -1;
-				return;
-			} else {
-				geplaatsteYTiles.clear();
 			}
 			geplaatsteYTiles.clear();
 
