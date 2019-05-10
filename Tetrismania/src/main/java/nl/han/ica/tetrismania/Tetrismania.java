@@ -62,7 +62,6 @@ public class Tetrismania extends GameEngine {
 		int r = random.nextInt((256 - 50) + 1) + 50;
 		int g = random.nextInt((256 - 50) + 1) + 50;
 		int b = random.nextInt((256 - 50) + 1) + 50;
-		randomInt = 6;
 		switch (randomInt) {
 		case 0:
 			s = new Vierkant(BREEDTE / 2 + 20, 40, r, g, b, this);
@@ -251,7 +250,6 @@ public class Tetrismania extends GameEngine {
 		return gedetecteerd;
 	}
 
-
 	/**
 	 * 
 	 * @return boolean Methode-omschrijving: Hier wordt gekeken of een Steen-object
@@ -280,6 +278,10 @@ public class Tetrismania extends GameEngine {
 	public void setText() {
 		txt.setText(Integer.toString(score));
 		txt.draw(g);
+	}
+	
+	public void setLvl(int level) {
+		
 	}
 
 }
