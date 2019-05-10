@@ -32,11 +32,11 @@ public class LvormRechts extends Steen {
 		tetrismania.addGameObject(steenMiddenRechts);
 		tetrismania.addGameObject(steenRBeneden);
 	}
-	
+
 	/**
 	 * 
-	 * Methode-omschrijving:
-	 * Hier vindt een controle plaats zodat die niet met een andere steen kan samenmelten.
+	 * Methode-omschrijving: Hier vindt een controle plaats zodat die niet met een
+	 * andere steen kan samenmelten.
 	 */
 
 	private boolean isLinksMogelijk() {
@@ -51,7 +51,6 @@ public class LvormRechts extends Steen {
 		}
 		return true;
 	}
-	
 
 	private boolean isRechtsMogelijk() {
 		for (SteenTile st : super.tm.geplaatsteTiles) {
@@ -181,12 +180,6 @@ public class LvormRechts extends Steen {
 			}
 		}
 		this.checkInVeld();
-
-	}
-
-	@Override
-	public void valNaarBodem() {
-		// TODO Auto-generated method stub
 
 	}
 

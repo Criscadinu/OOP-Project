@@ -201,10 +201,5 @@ public class LvormLinks extends Steen {
 		this.checkInVeld();
 	}
 
-	@Override
-	public void valNaarBodem() {
-		// TODO Auto-generated method stub
-
-	}
 
 }

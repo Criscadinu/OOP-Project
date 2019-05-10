@@ -101,12 +101,9 @@ public abstract class Steen {
 
 	}
 
-	public abstract void valNaarBodem();
-	
-	
 	/**
-	 * Methode-omschrijving:
-	 * Deze methode zorgt ervoor dat de steen niet buiten het speelveld kan gaan.
+	 * Methode-omschrijving: Deze methode zorgt ervoor dat de steen niet buiten het
+	 * speelveld kan gaan.
 	 */
 	public void checkInVeld() {
 		if (tiles[0].getX() < 0 || tiles[1].getX() < 0 || tiles[2].getX() < 0 || tiles[3].getX() < 0) {
@@ -124,10 +121,9 @@ public abstract class Steen {
 		}
 	}
 
-
 	/**
-	 * Methode-omschrijving:
-	 * Deze methode zorgt ervoor dat alle steentiles in dit Steen-object stoppen.
+	 * Methode-omschrijving: Deze methode zorgt ervoor dat alle steentiles in dit
+	 * Steen-object stoppen.
 	 */
 	public void stop() {
 		for (int i = 0; i < tiles.length; i++) {
@@ -138,16 +134,16 @@ public abstract class Steen {
 
 	/**
 	 * 
-	 *Methode-omschrijving:
-	 *Deze methode zorgt voor de rotatie van de steen Linksom.
+	 * Methode-omschrijving: Deze methode zorgt voor de rotatie van de steen
+	 * Linksom.
 	 *
 	 */
 	public abstract void draaiLinksom();
 
 	/**
 	 * 
-	 *Methode-omschrijving:
-	 *Deze methode zorgt voor de rotatie van de steen Rechtsom.
+	 * Methode-omschrijving: Deze methode zorgt voor de rotatie van de steen
+	 * Rechtsom.
 	 */
 	public abstract void draaiRechtsom();
 

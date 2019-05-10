@@ -45,8 +45,6 @@ public class UserInput extends GameObject {
 				steen.naarRechts();
 			} else if (keyCode == 37) { // Pijltjestoets links
 				steen.naarLinks();
-			} else if (keyCode == 32) { // Spatie
-				steen.valNaarBodem();
 			} else if (keyCode == 40) { // Pijltjestoets beneden
 				steen.naarBeneden();
 			} else if (keyCode == 65) { // A

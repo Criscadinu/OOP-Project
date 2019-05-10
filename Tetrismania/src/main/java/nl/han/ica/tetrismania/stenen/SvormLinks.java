@@ -174,17 +174,11 @@ public class SvormLinks extends Steen {
 				tiles[0].setY(tiles[0].getY() - 40);
 				tiles[1].setY(tiles[1].getY() + 0);
 				tiles[2].setY(tiles[2].getY() - 40);
-				tiles[3].setY(tiles[3].getY() + 0);
-				break;
+				tiles[3].setY(tiles[3].getY() + 0);				break;
 			}
 		}
 		this.checkInVeld();
 	}
 
-	@Override
-	public void valNaarBodem() {
-		// TODO Auto-generated method stub
-
-	}
 
 }

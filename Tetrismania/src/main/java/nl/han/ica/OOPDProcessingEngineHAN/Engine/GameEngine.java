@@ -1,25 +1,24 @@
 package nl.han.ica.OOPDProcessingEngineHAN.Engine;
 
-import nl.han.ica.OOPDProcessingEngineHAN.Dashboard.Dashboard;
+import java.awt.Rectangle;
+import java.util.Vector;
+
+import ddf.minim.Minim;
 import nl.han.ica.OOPDProcessingEngineHAN.Collision.CollidedTile;
 import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithGameObjects;
 import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithTiles;
+import nl.han.ica.OOPDProcessingEngineHAN.Dashboard.Dashboard;
 import nl.han.ica.OOPDProcessingEngineHAN.Dashboard.FPSCounter;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Tile.Tile;
+import nl.han.ica.OOPDProcessingEngineHAN.Tile.TileMap;
 import nl.han.ica.OOPDProcessingEngineHAN.UserInput.IKeyInput;
 import nl.han.ica.OOPDProcessingEngineHAN.UserInput.IMouseInput;
 import nl.han.ica.OOPDProcessingEngineHAN.View.View;
-import nl.han.ica.OOPDProcessingEngineHAN.Tile.TileMap;
 import processing.core.PApplet;
 import processing.core.PGraphics;
 import processing.core.PVector;
 import processing.event.MouseEvent;
-
-import java.awt.*;
-import java.util.Vector;
-
-import ddf.minim.Minim;
 
 /**
  * GameEngine is the core of the game. Extending this class is required to make

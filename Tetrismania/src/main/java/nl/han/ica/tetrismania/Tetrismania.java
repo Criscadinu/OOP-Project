@@ -32,6 +32,8 @@ public class Tetrismania extends GameEngine {
 	private final int BREEDTE = 600;
 	private final int HOOGTE = 800;
 	private int score = 0;
+	boolean spelGestart = false;
+	Mainmenu hoofdmenu = new Mainmenu(this);
 
 	private TextObject txt = new TextObject(Integer.toString(score), 20);
 
@@ -45,11 +47,7 @@ public class Tetrismania extends GameEngine {
 		int worldWidth = BREEDTE;
 		int worldHeight = HOOGTE;
 		createViewWithoutViewport(worldWidth, worldHeight);
-		initialiseerGeluid();
-		initialiseerExplosieGeluid();
-		tekenTekst();
-		maakBodemframe();
-		maakNieuweSteen();
+		toonMenu();
 
 	}
 
@@ -92,6 +90,23 @@ public class Tetrismania extends GameEngine {
 		return s;
 	}
 
+	public void startSpel() {
+		initialiseerGeluid();
+		initialiseerExplosieGeluid();
+		tekenTekst();
+		maakBodemframe();
+		maakNieuweSteen();
+		spelGestart = true;
+
+	}
+	
+	public void toonMenu() {
+		addGameObject(hoofdmenu);
+	}
+
+	public void verbergMenu() {
+		deleteGameObject(hoofdmenu);
+	}
 	/**
 	 * Methode-omschrijving: Hier wordt een Steen-object toegevoegd als GameObject
 	 * 
@@ -124,6 +139,8 @@ public class Tetrismania extends GameEngine {
 		txt.setText("GAME OVER !!!!!");
 		addGameObject(txt);
 		txt.draw(g);
+		deleteAllGameObjectsOfType(SteenTile.class);
+		toonMenu();
 	}
 
 	/**
@@ -163,17 +180,19 @@ public class Tetrismania extends GameEngine {
 	 */
 	@Override
 	public void update() {
-		if (vallendeSteen.gestopt) {
-			for (int i = 0; i < vallendeSteen.tiles.length; i++) {
-				geplaatsteTiles.add(vallendeSteen.tiles[i]);
-			}
-			if (checkPlayable()) {
-				this.maakNieuweSteen();
-			} else {
-				setGameOverTekst();
-			}
+		if (spelGestart) {
+			if (vallendeSteen.gestopt) {
+				for (int i = 0; i < vallendeSteen.tiles.length; i++) {
+					geplaatsteTiles.add(vallendeSteen.tiles[i]);
+				}
+				if (checkPlayable()) {
+					this.maakNieuweSteen();
+				} else {
+					setGameOverTekst();
+				}
 
-			regelVerwijderenVanStenen();
+				regelVerwijderenVanStenen();
+			}
 		}
 
 	}
@@ -235,8 +254,7 @@ public class Tetrismania extends GameEngine {
 
 	/**
 	 * 
-	 * @param addValue 
-	 * Methode-omschrijving: Hier wordt de score opgehoogd.
+	 * @param addValue Methode-omschrijving: Hier wordt de score opgehoogd.
 	 */
 	public void setScore(int addValue) {
 		this.score += addValue;

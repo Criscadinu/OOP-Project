@@ -17,8 +17,6 @@ public class Vierkant extends Steen {
 		this.tetrismania = tetrismania;
 	}
 
-
-
 	private void tekenVierkant(int x, int y, int r, int g, int b, Tetrismania tetrismania) {
 		SteenTile steenLBoven = new SteenTile(x, y, r, g, b, this);
 		SteenTile steenRBoven = new SteenTile(x + 40, y, r, g, b, this);
@@ -34,25 +32,12 @@ public class Vierkant extends Steen {
 		tetrismania.addGameObject(steenRBeneden);
 	}
 
-	
-
 	@Override
 	public void draaiLinksom() {
 	}
 
 	@Override
 	public void draaiRechtsom() {
-	}
-
-	@Override
-	public void valNaarBodem() {
-		if (!gestopt) {
-			for (int i = 0; i < tiles.length; i++) {
-
-				tiles[i].setY(tiles[i].getY() + (tetrismania.getHOOGTE() - tiles[i].getY()));
-			}
-		}
-		
 	}
 
 }

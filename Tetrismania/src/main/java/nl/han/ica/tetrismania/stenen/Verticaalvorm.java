@@ -32,11 +32,11 @@ public class Verticaalvorm extends Steen {
 		tetrismania.addGameObject(steenMiddenOnder);
 		tetrismania.addGameObject(steenBeneden);
 	}
-	
+
 	/**
 	 * 
-	 * Methode-omschrijving:
-	 * Hier vindt een controle plaats zodat die niet met een andere steen kan samenmelten.
+	 * Methode-omschrijving: Hier vindt een controle plaats zodat die niet met een
+	 * andere steen kan samenmelten.
 	 */
 	private boolean isLinksMogelijk() {
 		for (SteenTile st : super.tm.geplaatsteTiles) {
@@ -178,12 +178,6 @@ public class Verticaalvorm extends Steen {
 			}
 		}
 		this.checkInVeld();
-	}
-
-	@Override
-	public void valNaarBodem() {
-		// TODO Auto-generated method stub
-
 	}
 
 }
